@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!--
+    PRAfrica mark: the stacked-arc glyph from the wordmark.
+
+    Clay ground rather than sand so it holds its edge against both light and
+    dark browser chrome, and reduced to two solid domes plus a baseline rule
+    because strokes and fine detail disappear at 16px.
+
+    The glyph is inset from all four edges: iOS applies its own corner mask to
+    the apple-icon, and anything running to the edge gets clipped by it.
+  -->
+  <rect width="32" height="32" rx="6" fill="#B44B29"/>
+  <path d="M4 21 A12 12 0 0 1 28 21 Z" fill="#FAF5ED"/>
+  <path d="M9.5 21 A6.5 6.5 0 0 1 22.5 21 Z" fill="#DD9A39"/>
+  <rect x="6" y="23.5" width="20" height="2.5" rx="1.25" fill="#FAF5ED"/>
+</svg>

@@ -4,78 +4,127 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ==========================================================================
+   PRAfrica — "Warm African Modernism"
+   Palette is authored in OKLCH. Every text/background pairing below was
+   verified against WCAG 2.1 (see notes per token). Decorative hairlines
+   (--border) are intentionally soft and are exempt from 1.4.11; --input is
+   held to 3:1 because form boundaries must be perceivable.
+   ========================================================================== */
+
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.488 0.243 264.376);
-    --primary-foreground: oklch(0.97 0.014 254.604);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.546 0.245 262.881);
-    --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    /* Brand rawmaterials — used directly by the geometric bands and plates */
+    --sand: oklch(0.972 0.012 78);
+    --sand-deep: oklch(0.938 0.016 76);
+    --clay: oklch(0.545 0.145 38); /* terracotta */
+    --clay-deep: oklch(0.435 0.125 35);
+    --ochre: oklch(0.735 0.135 72);
+    --ochre-ink: oklch(0.52 0.12 62); /* 5.26:1 on sand — ochre that is safe as TEXT */
+    --ink: oklch(0.235 0.022 48);
+
+    --background: var(--sand);
+    --foreground: var(--ink); /* 15.44:1 */
+    --card: oklch(0.988 0.008 80);
+    --card-foreground: var(--ink);
+    --popover: oklch(0.988 0.008 80);
+    --popover-foreground: var(--ink);
+
+    --primary: var(--clay); /* 4.88:1 on sand */
+    --primary-foreground: oklch(0.99 0.004 80); /* 5.29:1 on clay */
+    --secondary: var(--sand-deep);
+    --secondary-foreground: oklch(0.3 0.025 48);
+    --muted: var(--sand-deep);
+    --muted-foreground: oklch(0.5 0.028 52); /* 5.58:1 on sand, 5.04:1 on sand-deep */
+
+    /* --accent is a FILL, not a text colour: 2.21:1 on sand. Ink on it is 6.97:1. */
+    --accent: var(--ochre);
+    --accent-foreground: var(--ink);
+    --accent-strong: var(--ochre-ink); /* use this when ochre must read as text */
+
+    --destructive: oklch(0.505 0.19 27);
+    --border: oklch(0.884 0.018 74); /* decorative hairline */
+    --input: oklch(0.62 0.026 66); /* 3.37:1 — perceivable form boundary */
+    --ring: var(--clay); /* 4.88:1 focus ring */
+
+    --chart-1: oklch(0.545 0.145 38);
+    --chart-2: oklch(0.652 0.135 55);
+    --chart-3: oklch(0.735 0.135 72);
+    --chart-4: oklch(0.44 0.075 95);
+    --chart-5: oklch(0.35 0.045 55);
+
+    --radius: 0.25rem;
+
+    --sidebar: oklch(0.955 0.014 77);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--clay);
+    --sidebar-primary-foreground: oklch(0.99 0.004 80);
+    --sidebar-accent: var(--sand-deep);
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: oklch(0.884 0.018 74);
+    --sidebar-ring: var(--clay);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.424 0.199 265.638);
-    --primary-foreground: oklch(0.97 0.014 254.604);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.623 0.214 259.815);
-    --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --sand: oklch(0.185 0.018 46);
+    --sand-deep: oklch(0.245 0.02 48);
+    --clay: oklch(0.64 0.145 40);
+    --clay-deep: oklch(0.52 0.13 38);
+    --ochre: oklch(0.78 0.13 75);
+    --ochre-ink: oklch(0.78 0.13 75); /* 9.18:1 on the dark ground — safe as text here */
+    --ink: oklch(0.948 0.012 80);
+
+    --background: oklch(0.185 0.018 46);
+    --foreground: oklch(0.948 0.012 80); /* 16.05:1 */
+    --card: oklch(0.225 0.019 47);
+    --card-foreground: oklch(0.948 0.012 80);
+    --popover: oklch(0.225 0.019 47);
+    --popover-foreground: oklch(0.948 0.012 80);
+
+    --primary: oklch(0.64 0.145 40); /* 5.24:1 on ground */
+    --primary-foreground: oklch(0.185 0.018 46); /* deep ink, NOT white — white is only 3.57:1 */
+    --secondary: oklch(0.245 0.02 48);
+    --secondary-foreground: oklch(0.948 0.012 80);
+    --muted: oklch(0.245 0.02 48);
+    --muted-foreground: oklch(0.705 0.022 70); /* 7.11:1 */
+
+    --accent: oklch(0.78 0.13 75);
+    --accent-foreground: oklch(0.185 0.018 46); /* deep ink on ochre = 9.18:1 */
+    --accent-strong: oklch(0.78 0.13 75);
+
+    --destructive: oklch(0.68 0.19 25);
+    --border: oklch(0.32 0.022 50);
+    --input: oklch(0.52 0.028 54); /* 3.37:1 */
+    --ring: oklch(0.64 0.145 40);
+
+    --chart-1: oklch(0.64 0.145 40);
+    --chart-2: oklch(0.72 0.135 58);
+    --chart-3: oklch(0.78 0.13 75);
+    --chart-4: oklch(0.6 0.08 95);
+    --chart-5: oklch(0.45 0.06 50);
+
+    --sidebar: oklch(0.225 0.019 47);
+    --sidebar-foreground: oklch(0.948 0.012 80);
+    --sidebar-primary: oklch(0.64 0.145 40);
+    --sidebar-primary-foreground: oklch(0.185 0.018 46);
+    --sidebar-accent: oklch(0.245 0.02 48);
+    --sidebar-accent-foreground: oklch(0.948 0.012 80);
+    --sidebar-border: oklch(0.32 0.022 50);
+    --sidebar-ring: oklch(0.64 0.145 40);
 }
 
 @theme inline {
+    --font-display: var(--font-display);
     --font-sans: var(--font-sans);
-    --font-heading: var(--font-heading);
+    --font-mono: var(--font-mono);
+
+    --color-sand: var(--sand);
+    --color-sand-deep: var(--sand-deep);
+    --color-clay: var(--clay);
+    --color-clay-deep: var(--clay-deep);
+    --color-ochre: var(--ochre);
+    --color-ink: var(--ink);
+    --color-accent-strong: var(--accent-strong);
+
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -107,6 +156,7 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
+
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -114,16 +164,129 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground font-sans;
+        /* Slight optical warmth: the ground is never pure white/black */
+        font-synthesis-weight: none;
+        text-rendering: optimizeLegibility;
     }
-  html {
-    @apply font-sans;
+
+    /* Display face: Fraunces, with the "wonk" dialled out so it reads as
+       confident editorial rather than novelty. */
+    .font-display,
+    h1,
+    h2,
+    h3,
+    .display {
+        font-family: var(--font-display), Georgia, serif;
+        font-variation-settings:
+            "SOFT" 24,
+            "WONK" 0;
+        letter-spacing: -0.022em;
+        text-wrap: balance;
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+
+    ::selection {
+        background: var(--clay);
+        color: var(--primary-foreground);
+    }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+/* Editorial eyebrow label — small caps, wide tracking, always paired with a rule */
+@utility eyebrow {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* The abstracted woven band — the signature motif. Layered gradients rather
+   than an image, so it costs nothing on a metered connection. */
+@utility band-weave {
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--clay) 0px,
+        var(--clay) 2px,
+        transparent 2px,
+        transparent 9px
+    );
+}
+
+@utility band-fade {
+    background-image: linear-gradient(90deg, var(--clay) 0%, var(--ochre) 45%, transparent 100%);
+}
+
+/* Fine grain, for tactility. ~1kB inline, no network request. */
+@utility grain {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+}
+
+/* Scroll reveal. Transform + opacity only (no layout-triggering properties). */
+@utility reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+        opacity 0.7s var(--ease-out-expo),
+        transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+@utility reveal-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* Underline that grows from the left on hover — no layout shift. */
+@utility link-rule {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.35s var(--ease-out-expo);
+    &:hover,
+    &:focus-visible {
+        background-size: 100% 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
 }
