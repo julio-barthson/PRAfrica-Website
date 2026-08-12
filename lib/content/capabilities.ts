@@ -1,83 +1,178 @@
 import type { Capability, Client, Stat, Testimonial } from "./types"
 
-/** ⚠️ Metrics, clients and quotes below are PLACEHOLDER. See work.ts. */
-
+/**
+ * Service lines, proof points and endorsements — all taken from the PR Africa
+ * International company profile.
+ *
+ * The four headline services are the ones the company states for itself; the
+ * remaining three are added because the milestones and executed projects show
+ * them being delivered repeatedly, and a services page that omits the work the
+ * company actually does is the wrong kind of modest.
+ */
 export const capabilities: Capability[] = [
   {
-    title: "Brand & Campaign Strategy",
+    title: "Country Branding & Marketing",
     description:
-      "Positioning, messaging and the campaign architecture that comes before anyone opens a design file.",
-    division: "advertising",
-    offerings: ["Market entry strategy", "Brand positioning", "Campaign planning", "Consumer research"],
+      "Positioning a nation to an international audience — the campaign, the placement and the government relations that make both possible.",
+    division: "branding",
+    offerings: [
+      "Nation brand platforms",
+      "International placement",
+      "Sponsor recruitment",
+      "Government liaison",
+    ],
   },
   {
-    title: "Media Planning & Buying",
+    title: "Global Outdoor & Airport Media",
     description:
-      "Paid media across broadcast, out-of-home, radio, print and digital — planned and negotiated in-market.",
-    division: "advertising",
-    offerings: ["Media strategy", "Buying & negotiation", "Performance media", "Attribution reporting"],
+      "Buying and holding high-value out-of-home sites in international hubs — Heathrow, OR Tambo — and on the corridors that matter at home.",
+    division: "branding",
+    offerings: [
+      "Airport terminal placement",
+      "Buying and negotiation",
+      "Production and installation",
+      "Monitoring and verification",
+    ],
+  },
+  {
+    title: "Sponsorship Drive & Marketing",
+    description:
+      "Finding the commercial partner who will fund the platform, and structuring the relationship so both sides get what they came for.",
+    division: "branding",
+    offerings: [
+      "Sponsor identification",
+      "Proposition and pricing",
+      "Negotiation",
+      "Activation and reporting",
+    ],
   },
   {
     title: "Public Relations",
     description:
-      "Earned coverage, reputation management and the press relationships that make a launch land.",
-    division: "advertising",
-    offerings: ["Media relations", "Press events", "Crisis communications", "Executive profiling"],
+      "Media publicity and press management for organisations whose reputation is decided by people they will never meet.",
+    division: "communications",
+    offerings: [
+      "Media relations",
+      "Press office",
+      "Publicity campaigns",
+      "Stakeholder forums",
+    ],
   },
   {
-    title: "Event Production",
+    title: "Trade & Investment Promotion",
     description:
-      "Concerts, launches, premieres and brand experiences — produced end to end, permits included.",
-    division: "entertainment",
-    offerings: ["Concept & creative", "Venue & logistics", "Technical production", "Sponsorship sales"],
+      "Putting exporters in front of buyers and investors in front of opportunity — exhibitions, forums and the federal partnerships behind them.",
+    division: "communications",
+    offerings: [
+      "Trade exhibitions",
+      "Investment forums",
+      "Exhibitor recruitment",
+      "Bilateral programmes",
+    ],
   },
   {
-    title: "Talent & Culture Partnerships",
+    title: "Political Advocacy & Lobby",
     description:
-      "Brokering the artist, creator and cultural partnerships that give a brand somewhere real to stand.",
-    division: "entertainment",
-    offerings: ["Talent brokerage", "Creator campaigns", "Music & film partnerships", "Ambassador programmes"],
+      "Making a case to the institutions that decide, and knowing which ones actually do.",
+    division: "communications",
+    offerings: [
+      "Advocacy strategy",
+      "Institutional relations",
+      "Endorsement and support",
+      "Position papers",
+    ],
   },
   {
-    title: "Content Production",
+    title: "Conference & Event Management",
     description:
-      "Film, photography and social-native content shot on the continent with local crews.",
-    division: "entertainment",
-    offerings: ["Commercial film", "Photography", "Social content", "Post-production"],
+      "Multi-day conferences and exhibitions run end to end — delegates, venues, volunteers, accreditation and press.",
+    division: "communications",
+    offerings: [
+      "Programme co-ordination",
+      "Delegate and accommodation logistics",
+      "Volunteer management",
+      "Exhibition production",
+    ],
   },
 ]
 
+/**
+ * Proof points. Each traces to a specific page of the profile — the MINEX run,
+ * the ICASA figures, the Nigeria @ 50 placement, the two partner firms. Nothing
+ * here is an estimate, because a rounded-up number on this page is the one a
+ * prospective client will ask about.
+ */
 export const stats: Stat[] = [
-  { value: "14", label: "African markets", note: "with in-country teams or partners" },
-  { value: "200+", label: "Campaigns delivered", note: "since 2016" },
-  { value: "60+", label: "Brands advised", note: "local and international" },
-  { value: "9", label: "Industry awards", note: "regional and continental" },
+  {
+    value: "25+",
+    label: "Years operating",
+    note: "since the first Made-in-Nigeria Exhibition, London 1999",
+  },
+  {
+    value: "8,000",
+    label: "Delegates co-ordinated",
+    note: "ICASA 2005, from 16 countries over 5 days",
+  },
+  {
+    value: "30",
+    label: "Heathrow Express panels",
+    note: "Nigeria @ 50 campaign, 2010",
+  },
+  {
+    value: "2",
+    label: "International partner firms",
+    note: "London and New York",
+  },
 ]
 
+/**
+ * ⚠️ `cleared` gates the public client wall.
+ *
+ * Public-sector and multilateral engagements are cleared: each is evidenced by
+ * an endorsement or engagement letter addressed to PRAfrica, and the
+ * relationships are already a matter of public record. The banks are not —
+ * those are commercial contracts, and being party to one is not permission to
+ * advertise it. Flip each to `true` as written permission arrives.
+ */
 export const clients: Client[] = [
-  { name: "Meridian Beverages", sector: "FMCG" },
-  { name: "Northwind Telecom", sector: "Telecoms" },
-  { name: "Atlas Financial", sector: "Banking" },
-  { name: "Savanna Air", sector: "Travel" },
-  { name: "Kesari Films", sector: "Film & TV" },
-  { name: "Lumo Energy", sector: "Energy" },
-  { name: "Harborline Logistics", sector: "Logistics" },
-  { name: "Adaeze Cosmetics", sector: "Beauty" },
+  { name: "Federal Republic of Nigeria", sector: "Government", cleared: true },
+  { name: "Nigerian Export Promotion Council", sector: "Trade", cleared: true },
+  { name: "Nigerian Investment Promotion Commission", sector: "Investment", cleared: true },
+  { name: "NEPAD Secretariat", sector: "Multilateral", cleared: true },
+  { name: "UNESCO", sector: "Multilateral", cleared: true },
+  { name: "Central Bank of Nigeria", sector: "Financial policy", cleared: true },
+  { name: "Education Trust Fund", sector: "Education", cleared: true },
+  { name: "ICASA", sector: "Public health", cleared: true },
+  { name: "GTBank Plc", sector: "Banking", cleared: false },
+  { name: "First Bank of Nigeria", sector: "Banking", cleared: false },
+  { name: "Fidelity Bank Plc", sector: "Banking", cleared: false },
 ]
 
+/** Only the clients cleared to be named publicly. */
+export const publicClients = clients.filter((c) => c.cleared)
+
+/**
+ * Endorsements, quoted from letters addressed to PRAfrica and reproduced in the
+ * company profile. Both are dated in the attribution — they are archival, and
+ * presenting a 2004 letter as a current client testimonial would misrepresent
+ * it. Genuine client quotes from the commercial engagements do not exist yet
+ * and need to be requested.
+ */
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "We had agencies who could talk about Africa and agencies who could actually operate here. PRAfrica were the only ones who did both — and they were the only ones who told us which of our assumptions were wrong.",
-    name: "Placeholder Name",
-    role: "Regional Marketing Director",
-    company: "International FMCG brand",
+      "I wish to register my appreciation for the patriotic spirit that has prompted your organisation's proactive initiative in projecting and marketing Nigeria in the best possible light to the international community. Your laudable effort at contributing to the growth and development of our nation is one which I have no hesitation in endorsing.",
+    name: "Olusegun Obasanjo",
+    role: "President",
+    company: "Federal Republic of Nigeria",
+    year: "2004",
   },
   {
     quote:
-      "They ran a twelve-city tour without a single missed date. In this market that is not a small thing — it is the whole thing.",
-    name: "Placeholder Name",
-    role: "Head of Brand",
-    company: "Telecoms operator",
+      "It is our belief that these initiatives will go a long way towards enhancing our efforts in promoting investments in Africa and among the Nigerian business fraternity. We hereby convey to you the support and endorsement of the NEPAD Secretariat to your proposed events.",
+    name: "Prof. Wiseman Nkuhlu",
+    role: "Chairperson, Steering Committee",
+    company: "NEPAD Secretariat",
+    year: "2004",
   },
 ]

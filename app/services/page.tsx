@@ -12,21 +12,21 @@ import { capabilities, engagementSteps, type Division } from "@/lib/content"
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Advertising and entertainment capabilities — brand strategy, media buying, PR, event production, talent partnerships and content production across African markets.",
+    "Country branding, global outdoor and airport media, sponsorship, public relations, trade and investment promotion, political advocacy and conference management.",
 }
 
 const DIVISIONS: { id: Division; label: string; blurb: string }[] = [
   {
-    id: "advertising",
-    label: "Advertising",
+    id: "branding",
+    label: "Branding & Media",
     blurb:
-      "Strategy, media and press for brands that need to be understood here. This is the side of the business that buys and earns attention.",
+      "Bought visibility. Country branding platforms, high-value placement in international hubs and on home-market corridors, and the sponsorship that funds both.",
   },
   {
-    id: "entertainment",
-    label: "Entertainment",
+    id: "communications",
+    label: "Communications",
     blurb:
-      "Events, talent and content for brands that need to be felt here. This is the side that builds cultural properties rather than renting them.",
+      "Earned standing. Press and publicity, political advocacy, trade and investment promotion, and the multi-day conferences that put the right people in one room.",
   },
 ]
 
@@ -37,12 +37,12 @@ export default function ServicesPage() {
         eyebrow="What we do"
         title={
           <>
-            Two disciplines,
+            Attention you buy,
             <br />
-            one operating team.
+            standing you earn.
           </>
         }
-        lead="Most briefs need both — a campaign that buys attention and a cultural moment that earns it. Running them separately is how the two end up contradicting each other."
+        lead="Most mandates need both — a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. Running them separately is how the two end up contradicting each other."
       />
 
       {DIVISIONS.map((division, dIndex) => (

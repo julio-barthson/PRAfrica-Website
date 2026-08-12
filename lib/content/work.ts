@@ -1,234 +1,354 @@
 import type { CaseStudy } from "./types"
 
 /**
- * ⚠️ PLACEHOLDER CONTENT — REPLACE BEFORE LAUNCH.
+ * Case studies drawn from the PR Africa International company profile.
  *
- * Every client name below is fictional by design. Do NOT substitute real brand
- * names here as filler: a staging link or screenshot that claims work for a real
- * company is a fabricated endorsement, and it travels further than you expect.
- * Replace each entry wholesale with a real, approved case study.
+ * Every claim here traces to a page of that document — the milestones list, the
+ * endorsement letters, or the executed-projects photography. Nothing is
+ * extrapolated. Where the profile records no measurable outcome, `results` is
+ * short or empty rather than filled with a plausible-looking number.
  *
- * Shapes are realistic so the layout is being tested against believable content
- * lengths — long client names, three-line summaries, and metric strings that
- * actually wrap are all represented here on purpose.
+ * ⚠️ TWO KNOWN GAPS, both needing the client to resolve:
+ *
+ * 1. RECENCY. The newest item in the profile is a July 2017 mandate letter.
+ *    Everything below is archive work. The site needs 2018–2026 projects before
+ *    it can credibly present this as a going concern.
+ *
+ * 2. CLIENT NAMES. See CLIENT_NAMES_CLEARED.
  */
-export const PLACEHOLDER_CONTENT = true
+
+/**
+ * Whether the commercial clients below have given written permission to be
+ * named on a public website.
+ *
+ * The bank engagements are evidenced by executed contracts and mandate letters,
+ * which are confidential commercial documents — holding a signed contract is
+ * not the same as holding permission to advertise the relationship. Until that
+ * permission arrives, `displayClient` substitutes a non-identifying descriptor
+ * and the case study narratives refer to "the bank" throughout.
+ *
+ * Flip to `true` only when permission is on file for every client whose
+ * `clientCleared` is false below.
+ */
+export const CLIENT_NAMES_CLEARED = false
+
+/**
+ * The name to render for a case study. Public-sector engagements documented in
+ * endorsement letters addressed to PRAfrica are cleared individually and are
+ * unaffected by the global flag.
+ */
+export function displayClient(study: CaseStudy): string {
+  if (study.clientCleared || CLIENT_NAMES_CLEARED) return study.client
+  return study.clientAnonymous ?? `Undisclosed — ${study.sector}`
+}
+
+/**
+ * Resolves a case study down to what may leave the server.
+ *
+ * `displayClient` alone is not enough at a client-component boundary: passing a
+ * raw CaseStudy to a `"use client"` component serialises *every* field into the
+ * RSC payload, so an uncleared name ships to the browser in plain text whether
+ * or not anything renders it. Sanitise here instead, and the name never leaves
+ * the server at all.
+ *
+ * The result is marked cleared because its `client` field is already the public
+ * value — `displayClient` stays correct if it is called again downstream.
+ */
+export function toPublicCaseStudy(study: CaseStudy): CaseStudy {
+  return {
+    ...study,
+    client: displayClient(study),
+    clientCleared: true,
+    clientAnonymous: undefined,
+  }
+}
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "meridian-beverages-harmattan",
-    client: "Meridian Beverages",
-    title: "A launch that owned the harmattan season",
+    slug: "nigeria-50-heathrow-express",
+    client: "Federal Republic of Nigeria",
+    clientCleared: true,
+    title: "Nigeria at fifty, on the way in from Heathrow",
     summary:
-      "A five-market rollout for a new citrus line, anchored on street-level activation and radio in the languages people actually buy in.",
-    division: "advertising",
-    sector: "FMCG",
-    markets: ["Nigeria", "Ghana", "Côte d'Ivoire"],
-    year: 2025,
-    services: ["Brand strategy", "Media buying", "Out-of-home", "Retail activation"],
-    results: [
-      { value: "3.2×", label: "Return on ad spend" },
-      { value: "41%", label: "Lift in aided awareness" },
-      { value: "1,800", label: "Retail outlets activated" },
+      "Thirty panels at Heathrow Express station carrying the Nigeria @ 50 campaign to every passenger travelling into central London.",
+    division: "branding",
+    sector: "Nation branding",
+    markets: ["United Kingdom"],
+    year: 2010,
+    services: [
+      "Country branding",
+      "Global media buying",
+      "Sponsorship drive",
+      "Government relations",
     ],
-    plate: { motif: "arc", tone: "clay" },
+    results: [
+      { value: "30", label: "Panels at Heathrow Express station" },
+      { value: "50th", label: "Independence anniversary campaign" },
+    ],
+    plate: { motif: "eclipse", tone: "clay" },
     featured: true,
     narrative: {
       challenge:
-        "A citrus line launching into a category already crowded with incumbents, in three markets with very different retail structures and no shared media landscape. The brief assumed a single continental campaign. The research said that would fail in at least two of the three.",
+        "Nigeria's fiftieth independence anniversary needed to be visible somewhere that mattered to the audience it was aimed at — international business travellers, diaspora and the London media — rather than only at home. The \"Good People, Great Nation\" platform existed. A place to run it did not.",
       approach:
-        "We built one strategic platform and three market-specific executions. Radio in Hausa, Twi and French carried the message where television reach was thin; the out-of-home buy concentrated on transit corridors rather than premium sites; and a retail activation programme put the product in hand at the point where the category decision is actually made.",
+        "We secured thirty advertising panels at Heathrow Express station, the corridor every passenger travelling from Heathrow into central London passes through, and brought in a commercial sponsor to fund the placement rather than asking the campaign to carry the cost alone.",
       outcome:
-        "The line hit its twelve-month volume target in seven months. More usefully for the client, the market-by-market split produced a reusable model for how they enter their next three territories.",
+        "The placement ran through the anniversary period and was formally acknowledged by the Federal Ministry of Information and Communications, which credited the team by name and held the sponsor up as an example for other corporate organisations to follow.",
     },
     deliverables: [
-      "Brand platform and messaging framework",
-      "Three localised campaign executions",
-      "Radio production in four languages",
-      "Transit and roadside out-of-home buy",
-      "1,800-outlet retail activation programme",
+      "Thirty panels at Heathrow Express station",
+      "Sponsor identification and negotiation",
+      "Message production and installation",
+      "Placement scheduling across the anniversary period",
     ],
     quote: {
-      text: "They talked us out of the campaign we came in asking for, and they were right. That is worth more than any media discount.",
-      name: "Placeholder Name",
-      role: "Regional Marketing Director",
+      text: "I have been informed of your evident patronage, through the effort of the team at PRAfrica International Limited, in securing advertising spaces at the Heathrow Express Station for the celebration of Nigeria's 50th independence anniversary.",
+      name: "Prof. Dora Akunyili",
+      role: "Honourable Minister of Information and Communications",
+      org: "Federal Republic of Nigeria, 2010",
     },
   },
   {
-    slug: "northwind-telecom-city-sessions",
-    client: "Northwind Telecom",
-    title: "Turning a data plan into a music franchise",
+    slug: "icasa-2005-abuja",
+    client: "International Conference on AIDS & STIs in Africa",
+    clientCleared: true,
+    title: "Eight thousand delegates, one hundred and two hotels",
     summary:
-      "We built a touring live-session series that gave a telecoms product a cultural reason to exist — then handed the brand a content library it still runs on.",
-    division: "entertainment",
-    sector: "Telecoms",
-    markets: ["Nigeria", "Kenya"],
-    year: 2025,
-    services: ["Event production", "Talent partnerships", "Content production", "Social"],
+      "Project co-ordination for the continent's largest HIV/AIDS conference — five days, sixteen countries and a $4m operating budget.",
+    division: "communications",
+    sector: "Public health",
+    markets: ["Nigeria"],
+    year: 2005,
+    services: [
+      "Event management",
+      "Media publicity",
+      "Sponsorship and event management",
+      "Volunteer co-ordination",
+    ],
     results: [
-      { value: "12", label: "Cities toured" },
-      { value: "28M", label: "Organic video views" },
-      { value: "64%", label: "Of activations sold out" },
+      { value: "8,000", label: "Participants from 16 countries" },
+      { value: "700", label: "Volunteers co-ordinated" },
+      { value: "102", label: "Hotels across the host city" },
     ],
     plate: { motif: "weave", tone: "ochre" },
     featured: true,
     narrative: {
       challenge:
-        "Data plans are indistinguishable on paper. The client had spent two years competing on price and had the margins to show for it. They needed a reason for a young audience to prefer them that a competitor could not simply undercut the following quarter.",
+        "ICASA 2005 brought over eight thousand participants from sixteen countries to Abuja for five days across twelve sessions. An event at that scale fails on logistics long before it fails on content: accommodation, movement, accreditation and press all have to work simultaneously in a city that has to absorb the load.",
       approach:
-        "Rather than sponsor someone else's festival, we built an owned property: an intimate live-session series in twelve cities, booking artists early in their break-out rather than at peak fee. Every night was filmed as social-native content, which meant the tour produced a media library rather than just an audience.",
+        "PRAfrica International served as project co-ordinator on a $4m budget, running event management, media publicity and event sponsorship together rather than as separate workstreams. Seven hundred volunteers were recruited and co-ordinated, and accommodation was managed across a hundred and two hotels.",
       outcome:
-        "The series is now in its second season and runs as a standing brand property. The content library continues to deliver reach months after each show, at no incremental media cost.",
+        "The conference ran its full five-day, twelve-session programme. It remains the largest single event in the company's record and the clearest evidence of its operational capacity at scale.",
     },
     deliverables: [
-      "Franchise concept and brand architecture",
-      "Twelve-city tour production",
-      "Artist booking and talent negotiation",
-      "Multi-camera film capture and post",
-      "Social distribution strategy",
+      "Project co-ordination across a five-day programme",
+      "Accommodation management across 102 hotels",
+      "Recruitment and co-ordination of 700 volunteers",
+      "Media publicity and press management",
+      "Event sponsorship and management",
     ],
   },
   {
-    slug: "atlas-financial-first-account",
-    client: "Atlas Financial Group",
-    title: "Making a first bank account feel like arriving",
+    slug: "minex-made-in-nigeria",
+    client: "Nigerian Export Promotion Council and NIPC",
+    clientCleared: true,
+    title: "Made in Nigeria, shown at the Barbican",
     summary:
-      "A youth-banking campaign that dropped the aspirational stock imagery and cast real customers, shot in their own neighbourhoods.",
-    division: "advertising",
-    sector: "Financial services",
-    markets: ["Nigeria"],
-    year: 2024,
-    services: ["Creative direction", "Production", "Influencer strategy", "Performance media"],
+      "An export exhibition franchise that ran for eight years from the Barbican to Wembley Arena to the Sandton Convention Centre.",
+    division: "communications",
+    sector: "Trade and investment",
+    markets: ["United Kingdom", "South Africa", "Nigeria"],
+    year: 2006,
+    services: [
+      "Exhibition organisation",
+      "Trade and investment promotion",
+      "Government relations",
+      "Sponsorship drive",
+    ],
     results: [
-      { value: "180K", label: "Accounts opened in 90 days" },
-      { value: "-37%", label: "Cost per acquisition" },
-      { value: "2.1M", label: "Campaign engagements" },
+      { value: "8 yrs", label: "Continuous franchise, 1999 to 2006" },
+      { value: "3", label: "Host venues across two continents" },
+      { value: "2", label: "Federal agencies partnered" },
     ],
     plate: { motif: "column", tone: "deep" },
+    narrative: {
+      challenge:
+        "Nigerian manufacturers had product to export and no forum in which international buyers could see it. Trade promotion at the time meant delegations and paperwork, not a room where someone could pick a product up.",
+      approach:
+        "MINEX — Made in Nigeria Exhibitions — was built as a recurring exhibition franchise rather than a one-off event, in partnership with the Nigerian Export Promotion Council and the Nigerian Investment Promotion Commission. It opened at the Barbican Centre in London in 1999, moved to Wembley Arena in 2000, and ran at the Sandton Convention Centre in Johannesburg from 2004 to 2006 as the focus shifted to intra-African trade.",
+      outcome:
+        "The franchise ran for eight years across three venues on two continents, and drew formal endorsement from both the Presidency and the NEPAD Secretariat.",
+    },
+    deliverables: [
+      "Exhibition concept and franchise design",
+      "Venue negotiation in London and Johannesburg",
+      "Federal agency partnership (NEPC, NIPC)",
+      "Exhibitor recruitment and sponsorship drive",
+      "Media publicity across both markets",
+    ],
+    quote: {
+      text: "Your laudable effort at contributing to the growth and development of our nation is one which I have no hesitation in endorsing.",
+      name: "Olusegun Obasanjo",
+      role: "President",
+      org: "Federal Republic of Nigeria, 2004",
+    },
+  },
+  {
+    slug: "airport-global-visibility",
+    client: "GTBank Plc",
+    clientCleared: false,
+    clientAnonymous: "Pan-African banking group",
+    title: "An African bank, met at the arrivals gate",
+    summary:
+      "Airport domination across Heathrow and OR Tambo, positioning a Nigerian bank as an international one at the point where the audience lands.",
+    division: "branding",
+    sector: "Banking",
+    markets: ["United Kingdom", "South Africa"],
+    year: 2010,
+    services: [
+      "Global branding",
+      "Airport and outdoor media",
+      "Media buying and negotiation",
+      "Production and installation",
+    ],
+    results: [
+      { value: "2", label: "International hub airports" },
+      { value: "5+", label: "Arrival, departure and roadside sites" },
+    ],
+    plate: { motif: "arc", tone: "ochre" },
     featured: true,
     narrative: {
       challenge:
-        "Youth banking products in the market all looked the same: aspirational imagery, aspirational language, and an account opening flow that took nine days. The category had trained young customers to assume banks were not talking to them.",
+        "The bank had listed on the London Stock Exchange and operated across five countries, but outside its home market it still read as a regional institution. The claim it needed to make — African in origin, international in standard — is one nobody believes from a press release.",
       approach:
-        "We cast actual customers instead of models and shot in their own neighbourhoods. The creative led with the moment of getting paid rather than the moment of getting rich. Alongside the campaign we pushed the client hard on the onboarding flow, because no amount of media buys around a nine-day wait.",
+        "We placed it where the claim proves itself: the arrivals halls, baggage reclaims and transit corridors of two international hub airports, in London and Johannesburg, alongside roadside placement on the approach to OR Tambo. Message production, installation and maintenance were run in-market at both ends.",
       outcome:
-        "Account openings tripled against forecast, and acquisition cost fell by more than a third. The onboarding work was the unglamorous half of that result and probably the more important one.",
+        "The bank held continuous visibility at both hubs, and the programme became the basis of a global branding offer the company has since run for other clients in the UK, South Africa and Dubai.",
     },
     deliverables: [
-      "Creative platform and campaign identity",
-      "Documentary-style film and stills production",
-      "Creator and influencer programme",
-      "Performance media across paid social and search",
-      "Onboarding funnel audit and recommendations",
-    ],
-    quote: {
-      text: "The campaign was strong. The thing that actually moved the number was them refusing to stop talking about our sign-up flow.",
-      name: "Placeholder Name",
-      role: "Head of Retail Products",
-    },
-  },
-  {
-    slug: "kesari-films-continental-premiere",
-    client: "Kesari Films",
-    title: "A continental premiere run for an African feature",
-    summary:
-      "Press, partnerships and a six-city premiere tour that took an independent film from festival circuit to mainstream release.",
-    division: "entertainment",
-    sector: "Film & TV",
-    markets: ["Nigeria", "South Africa", "Kenya", "Ghana"],
-    year: 2024,
-    services: ["Public relations", "Event production", "Media partnerships"],
-    results: [
-      { value: "6", label: "Premiere cities" },
-      { value: "240+", label: "Press placements" },
-      { value: "#1", label: "Opening weekend, home market" },
-    ],
-    plate: { motif: "eclipse", tone: "clay" },
-    narrative: {
-      challenge:
-        "A well-reviewed independent feature with a festival record and almost no mainstream awareness, opening against a studio release. The distribution window was six weeks and the marketing budget was a fraction of the competing title's.",
-      approach:
-        "We ran press and partnerships instead of paid media. A six-city premiere tour created a local news moment in each market, and media partnerships traded coverage for premiere access rather than cash. The talent schedule was built around radio and daytime television, which reach the audience that actually buys cinema tickets in these markets.",
-      outcome:
-        "The film took the number one opening weekend slot in its home market and held a top-five position for three weeks, on a fraction of the competing spend.",
-    },
-    deliverables: [
-      "Publicity strategy and press office",
-      "Six-city premiere tour production",
-      "Media partnership negotiation",
-      "Talent media training and scheduling",
-      "Red carpet and content capture",
+      "Arrival scrollers and light boxes, Heathrow",
+      "Baggage reclaim and ticketing hall sites, OR Tambo",
+      "Roadside unipole on the OR Tambo approach",
+      "Message production and installation, both markets",
+      "Site maintenance across the placement period",
     ],
   },
   {
-    slug: "savanna-air-route-launch",
-    client: "Savanna Air",
-    title: "Selling a new route before the first flight",
+    slug: "heathrow-terminal-programme",
+    client: "First Bank of Nigeria",
+    clientCleared: false,
+    clientAnonymous: "Leading Nigerian commercial bank",
+    title: "Twenty sites, two terminals, twelve months",
     summary:
-      "An airline route launch built on diaspora media, airport domination and a referral mechanic that did most of the work for us.",
-    division: "advertising",
-    sector: "Travel",
-    markets: ["Nigeria", "United Kingdom"],
-    year: 2024,
-    services: ["Media strategy", "Out-of-home", "Diaspora marketing", "CRM"],
+      "A year-long Heathrow terminal programme built around the moment a passenger arrives in London, renewed off the back of the previous run.",
+    division: "branding",
+    sector: "Banking",
+    markets: ["United Kingdom"],
+    year: 2014,
+    services: [
+      "Global media buying",
+      "Airport and outdoor media",
+      "Message production",
+      "Placement monitoring",
+    ],
     results: [
-      { value: "92%", label: "Load factor at launch" },
-      { value: "5.4×", label: "Return on ad spend" },
-      { value: "31%", label: "Bookings from referral" },
+      { value: "20", label: "Advertising sites across the year" },
+      { value: "2", label: "Heathrow terminals" },
+      { value: "12 mo", label: "Continuous placement" },
     ],
     plate: { motif: "weave", tone: "sand" },
     narrative: {
       challenge:
-        "A new long-haul route with a fixed launch date, no route awareness on either end, and a load factor target that assumed a full aircraft from week one. Route launches fail quietly and expensively when the first month is empty.",
+        "The bank wanted to own the arrival moment at Heathrow for a full calendar year — a placement that only works if the sites are held continuously and the creative is refreshed inside the run, rather than bought as a single burst and left to go stale.",
       approach:
-        "We treated the diaspora as the primary market rather than a secondary one, buying community radio, places of worship and diaspora press in the UK alongside airport domination at both ends. A referral mechanic let early bookers earn credit for bringing others, which suited a route where people travel to see family in groups.",
+        "We structured the buy across two terminals and three formats: ten arrival scrollers at Terminal 5, five \"Welcome to London\" arrival light boxes at Terminal 3, and five departure light boxes at Terminal 3, staggered so coverage held across the year. Production, installation and maintenance were included in the fee across three creative iterations.",
       outcome:
-        "The route launched at 92% load factor and held above 85% through the first quarter. Nearly a third of bookings came through referral, at effectively no media cost.",
+        "The programme ran from January to December and was itself a renewal of the previous year's placement — the clearest signal available that the first run had worked.",
     },
     deliverables: [
-      "Route launch media strategy",
-      "Diaspora media planning and buying",
-      "Airport out-of-home domination, both ends",
-      "Referral mechanic design and CRM build",
-      "Launch week press and content",
+      "Ten arrival scrollers, Terminal 5",
+      "Five arrival light boxes, Terminal 3",
+      "Five departure light boxes, Terminal 3",
+      "Three creative iterations across the run",
+      "Installation and maintenance throughout",
     ],
   },
   {
-    slug: "lumo-energy-switch",
-    client: "Lumo Energy",
-    title: "Explaining solar without saying the word solar",
+    slug: "outdoor-media-oversight",
+    client: "Fidelity Bank Plc",
+    clientCleared: false,
+    clientAnonymous: "Nigerian commercial bank",
+    title: "Buying the outdoor, then checking it was there",
     summary:
-      "A behaviour-change campaign for home energy that led with the cost of a generator refill rather than the technology.",
-    division: "advertising",
-    sector: "Energy",
-    markets: ["Nigeria", "Ghana"],
-    year: 2023,
-    services: ["Brand strategy", "Radio", "Community activation", "Performance media"],
-    results: [
-      { value: "76K", label: "Qualified installation leads" },
-      { value: "2.8×", label: "Increase in consideration" },
-      { value: "22", label: "Community roadshows" },
+      "Appointed oversight agency for a bank's national outdoor media — responsible not just for the buy but for verifying it ran.",
+    division: "branding",
+    sector: "Banking",
+    markets: ["Nigeria"],
+    year: 2017,
+    services: [
+      "Outdoor media buying",
+      "Media monitoring and verification",
+      "Vendor management",
+      "Campaign reporting",
     ],
-    plate: { motif: "arc", tone: "ochre" },
+    results: [
+      { value: "3", label: "Formats: unipole, gantry, bus shelter" },
+    ],
+    plate: { motif: "column", tone: "clay" },
     narrative: {
       challenge:
-        "Home solar had an education problem dressed up as a marketing problem. Prospective customers understood generators, understood fuel costs, and had no working mental model for what a solar installation was or what it cost to run.",
+        "Outdoor media in Nigeria is bought from a fragmented vendor base, and the gap between what is invoiced and what is actually posted is the category's structural weakness. The bank needed a single agency accountable for both halves of that problem.",
       approach:
-        "We stopped leading with the technology. Every execution opened on the weekly cost of a generator refill — a number the audience already knew — and positioned the product as a way to stop paying it. Radio carried the argument, and twenty-two community roadshows let people see a working installation rather than imagine one.",
+        "We were engaged as oversight agency for outdoor media buying and monitoring, under a service level agreement covering the campaign. Verification was treated as a deliverable in its own right rather than as a courtesy attached to the buy.",
       outcome:
-        "Consideration nearly tripled over the campaign period and the client took 76,000 qualified installation leads, enough to expand into a second market the following year.",
+        "The bank's short-code campaign ran across unipole billboards, roadside gantries and branded bus shelters on major Lagos and Abuja corridors, with placement verified against what had been bought.",
     },
     deliverables: [
-      "Category and behaviour-change strategy",
-      "Radio creative and production",
-      "Twenty-two community roadshow activations",
-      "Performance media and lead capture",
-      "Sales team messaging toolkit",
+      "Outdoor media planning and buying",
+      "Unipole, gantry and bus shelter placement",
+      "Independent monitoring and verification",
+      "Vendor negotiation and management",
+      "Campaign reporting against the buy",
     ],
   },
 ]
 
-export const featuredCaseStudies = caseStudies.filter((c) => c.featured)
+/**
+ * Engagements the profile records without enough detail to carry a full case
+ * study page. Listed rather than dropped: together they are the evidence for
+ * the conference and advocacy side of the business.
+ */
+export const archiveEngagements = [
+  {
+    title: "UNESCO Business Roundtable on Education for All",
+    year: "2002",
+    detail:
+      "A two-day conference convening the organised private sector behind UNESCO's Education for All initiative. Media publicity, event management and sponsorship drive.",
+  },
+  {
+    title: "Business Investment Forum, Johannesburg",
+    year: "2005",
+    detail:
+      "A three-day forum at the Sandton Convention Centre with the Nigerian Investment Promotion Commission, targeting foreign direct investment across agriculture, mining, oil and gas, telecoms and manufacturing. Media relations and public marketing.",
+  },
+  {
+    title: "Technical and Vocational Education Conference",
+    year: "2008",
+    detail:
+      "A three-day conference and exhibition for the Education Trust Fund on technical and vocational education in a developing economy. Event management, media publicity and sponsorship.",
+  },
+  {
+    title: "CBN 2020 Financial Conference",
+    year: "2007",
+    detail:
+      "A stakeholders' forum convening the banking industry on strategy for the sector. Media relations and stakeholder forum management.",
+  },
+]
+
+/** Use these anywhere the data crosses into the browser. */
+export const publicCaseStudies = caseStudies.map(toPublicCaseStudy)
+
+export const featuredCaseStudies = publicCaseStudies.filter((c) => c.featured)
 
 export function getCaseStudy(slug: string) {
   return caseStudies.find((c) => c.slug === slug)

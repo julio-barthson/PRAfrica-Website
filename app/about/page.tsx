@@ -5,12 +5,12 @@ import { CampaignPlate } from "@/components/site/campaign-plate"
 import { Container } from "@/components/site/container"
 import { PageHeader } from "@/components/site/page-header"
 import { Reveal } from "@/components/site/reveal"
-import { markets, stats, team } from "@/lib/content"
+import { markets, partners, stats, team } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "PRAfrica is an advertising and entertainment company operating across African markets, with in-country teams and a bias for work that moves a number.",
+    "PR Africa International is an integrated marketing communications company, established to handle public and media relations for private and public sector organisations across Africa.",
 }
 
 export default function AboutPage() {
@@ -20,12 +20,12 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            We operate here.
+            The wealth of a nation
             <br />
-            That is the difference.
+            is its perceived value.
           </>
         }
-        lead="Plenty of agencies can present a strategy for Africa. Far fewer can staff a twelve-city tour, clear a permit in three markets, or tell you which of your assumptions will not survive contact with the ground."
+        lead="PR Africa International was established to initiate, execute and handle public and media relations for private and public sector organisations across Africa — on the premise that how a country is understood abroad is an economic asset, not a vanity one."
       />
 
       <section className="py-16 lg:py-24">
@@ -33,25 +33,27 @@ export default function AboutPage() {
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal className="flex flex-col gap-6">
               <h2 className="font-display text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.05] font-semibold">
-                One team, two disciplines, fourteen markets.
+                Persuade, translate, transform, inform.
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                PRAfrica was built around a straightforward observation: brands
-                entering African markets were being sold either continental
-                strategy with no execution capacity, or local execution with no
-                strategic spine. Both fail, in different and expensive ways.
+                We are one of the leading integrated marketing communications
+                companies in Nigeria, established to initiate, execute and handle
+                public and media relations for private and public sector
+                organisations across Africa.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                We run advertising and entertainment out of the same operating
-                team, in-market, with people who live in the territories the work
-                runs in. That means our media plans are negotiated by people who
-                know the stations, and our events are produced by people who know
-                which permits actually take six weeks.
+                We recognise that the wealth of modern nations is fast emerging
+                as their perceived value. That is why the power to persuade,
+                translate, transform, inform, inspire and educate sits at the
+                centre of how we work — and why our record runs from trade
+                exhibitions at the Barbican to arrivals halls at Heathrow and OR
+                Tambo.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                We also tell clients when their brief is the wrong one. It has
-                cost us pitches. It has kept every client relationship we care
-                about.
+                We are committed to providing clients with state-of-the-art
+                expertise in our business processes and innovative activities
+                that directly support the management of their public image and
+                corporate aspiration.
               </p>
             </Reveal>
 
@@ -87,9 +89,9 @@ export default function AboutPage() {
             </h2>
           </Reveal>
 
-          <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
             {team.map((member, i) => (
-              <Reveal key={member.role} delay={i * 90} as="li" className="flex flex-col gap-4">
+              <Reveal key={member.name} delay={i * 90} as="li" className="flex flex-col gap-4">
                 {/* Replace with real photography first — this is the page where
                     generated artwork is weakest, because people buy people. */}
                 <div className="border-border overflow-hidden rounded-sm border">
@@ -102,9 +104,11 @@ export default function AboutPage() {
                   <p className="text-accent-strong text-xs font-semibold tracking-wide uppercase">
                     {member.role}
                   </p>
-                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                    {member.bio}
-                  </p>
+                  {member.bio ? (
+                    <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
+                      {member.bio}
+                    </p>
+                  ) : null}
                 </div>
               </Reveal>
             ))}
@@ -117,7 +121,7 @@ export default function AboutPage() {
           <Reveal className="flex flex-col gap-4">
             <span className="eyebrow text-accent-strong">Where we work</span>
             <h2 className="font-display max-w-2xl text-[clamp(2rem,4.4vw,3.25rem)] leading-[1.02] font-semibold">
-              In-country teams and standing partners.
+              Delivered work, and the partners behind it.
             </h2>
           </Reveal>
 
@@ -129,6 +133,29 @@ export default function AboutPage() {
                   className="border-border font-display border-b px-1 py-5 text-lg font-semibold tracking-tight"
                 >
                   {market}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          {/* Named explicitly rather than folded into the market list. The
+              London and New York presence is a partner relationship, and a
+              website that lets it read as an owned office is making a claim the
+              company cannot support. */}
+          <Reveal delay={160} className="mt-12 flex flex-col gap-5">
+            <p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">
+              Work is delivered in-market from Lagos. Our reach into London and
+              New York runs through standing international partners:
+            </p>
+            <ul className="flex flex-col gap-4 sm:flex-row sm:gap-12">
+              {partners.map((partner) => (
+                <li key={partner.name} className="flex flex-col gap-1">
+                  <span className="font-display text-base font-semibold">
+                    {partner.name}
+                  </span>
+                  <span className="text-muted-foreground text-sm">
+                    {partner.location}
+                  </span>
                 </li>
               ))}
             </ul>

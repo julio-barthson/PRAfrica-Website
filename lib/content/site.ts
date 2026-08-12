@@ -1,15 +1,21 @@
 export const site = {
   name: "PRAfrica",
   /** Used in the <title> template and OG tags. */
-  legalName: "PRAfrica Media",
-  tagline: "Advertising & entertainment, built for African markets.",
+  legalName: "PR Africa International Limited",
+  /** The company's own line, in use since at least 1999. */
+  tagline: "Selling Africa to the World",
   description:
-    "PRAfrica is an advertising and entertainment company partnering with international and local brands to build campaigns, events and cultural moments across Africa.",
+    "PR Africa International is an integrated marketing communications company handling country branding, trade and investment promotion, public relations and political advocacy for public and private sector organisations across Africa.",
   /**
    * ⚠️ ASSUMPTION — confirm before launch.
    * Inferred from the email domain in .env (prafricalimited.com). Everything
    * canonical derives from this: OG image URLs, the sitemap and metadataBase.
    * If the site is served from a different domain, change it here only.
+   *
+   * Note the conflict: the company profile gives the CEO's address as
+   * ceo@celtrongroup.com and points to celtrongroup.com, because PRAfrica is
+   * one of three companies in the Celtron Group alongside Celtron Nigeria and
+   * MediaStar. Confirm which entity this site represents.
    */
   url: "https://prafricalimited.com",
   locale: "en_NG",
@@ -18,11 +24,18 @@ export const site = {
    * Public contact details, so they live here rather than in .env — they are
    * rendered into the footer on every page and are not secrets. The env file
    * keeps the Mailjet credentials and the internal admin/sender addresses.
+   *
+   * ⚠️ The profile lists 0805 700 0007 / 0703 700 0007, but those are the CEO's
+   * direct lines rather than a switchboard, so they are not published here.
+   * Confirm a main line and a general enquiries address before launch.
+   *
+   * Address is the most recent of the three in the profile (2017); the earlier
+   * two — Jibowu, Yaba (2004) and Omole Phase 1 (2013) — are historic.
    */
   contact: {
     email: "info@prafricalimited.com",
     phone: "+234 806 483 9141",
-    address: "Lagos, Nigeria",
+    address: "Plot 14, Road 1, Ikota Villa Estate, Ajah, Lagos",
   },
 
   nav: [

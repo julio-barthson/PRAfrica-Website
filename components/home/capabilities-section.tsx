@@ -9,14 +9,16 @@ import { capabilities, type Division } from "@/lib/content"
 
 const DIVISIONS: { id: Division; label: string; blurb: string }[] = [
   {
-    id: "advertising",
-    label: "Advertising",
-    blurb: "Strategy, media and press for brands that need to be understood here.",
+    id: "branding",
+    label: "Branding & Media",
+    blurb:
+      "Bought visibility — country branding, airport and outdoor placement, and the sponsors who fund it.",
   },
   {
-    id: "entertainment",
-    label: "Entertainment",
-    blurb: "Events, talent and content for brands that need to be felt here.",
+    id: "communications",
+    label: "Communications",
+    blurb:
+      "Earned standing — press, advocacy, trade promotion and the conferences that convene the room.",
   },
 ]
 
@@ -34,12 +36,12 @@ export function CapabilitiesSection() {
             eyebrow="What we do"
             title={
               <>
-                Two disciplines,
+                Attention you buy,
                 <br />
-                one operating team.
+                standing you earn.
               </>
             }
-            lead="Most briefs need both — a campaign that buys attention and a cultural moment that earns it. We run them out of the same room."
+            lead="Most mandates need both — a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. We run them out of the same room."
           />
         </Reveal>
 

@@ -7,8 +7,15 @@
  * to publish without a developer, each interface maps 1:1 onto a schema.
  */
 
-/** Which side of the business a piece of work or a capability belongs to. */
-export type Division = "advertising" | "entertainment"
+/**
+ * Which side of the business a piece of work or a capability belongs to.
+ *
+ * These two names come from the company profile, not from us. "branding" is the
+ * global visibility work — airport and outdoor media, country branding,
+ * sponsorship. "communications" is the earned and advocacy side — PR, political
+ * lobbying, trade promotion and the conference programme.
+ */
+export type Division = "branding" | "communications"
 
 /**
  * Drives the generated SVG artwork used in place of real photography.
@@ -24,7 +31,16 @@ export interface Plate {
 
 export interface CaseStudy {
   slug: string
+  /** The real client. Only rendered when `clientCleared` is true — see work.ts. */
   client: string
+  /**
+   * Whether this client has given written permission to be named publicly.
+   * Public-sector engagements evidenced by endorsement letters addressed to
+   * PRAfrica are cleared; commercial contracts are not until the client says so.
+   */
+  clientCleared: boolean
+  /** Non-identifying descriptor shown in place of `client` while uncleared. */
+  clientAnonymous?: string
   /** Short, punchy — used as the card headline. */
   title: string
   /** One line of context shown under the title. */
@@ -36,7 +52,11 @@ export interface CaseStudy {
   markets: string[]
   year: number
   services: string[]
-  /** Headline outcomes. Keep to 3 — more reads as noise, fewer reads as thin. */
+  /**
+   * Headline outcomes. Keep to 3 — more reads as noise, fewer reads as thin.
+   * May be empty: some of the archive work predates any reporting we hold, and
+   * an invented metric is worse than none. Consumers must handle [].
+   */
   results: { value: string; label: string }[]
   plate: Plate
   featured?: boolean
@@ -48,15 +68,24 @@ export interface CaseStudy {
   }
   /** What was actually shipped. Concrete nouns beat abstractions here. */
   deliverables: string[]
-  /** Optional client quote specific to this project. */
-  quote?: { text: string; name: string; role: string }
+  /**
+   * Optional quote specific to this project. `org` overrides the client name in
+   * the attribution — several of these come from endorsing bodies (a ministry,
+   * a secretariat) rather than from the client who commissioned the work.
+   */
+  quote?: { text: string; name: string; role: string; org?: string }
 }
 
 export interface TeamMember {
   name: string
   role: string
-  /** One line — the site is not a CV. */
-  bio: string
+  /**
+   * One line — the site is not a CV. Optional, and omitted rather than
+   * invented: these are real, named people, and a plausible-sounding career
+   * history attributed to someone who never claimed it is a fabrication about a
+   * private individual, not filler copy.
+   */
+  bio?: string
   plate: Plate
 }
 
@@ -85,6 +114,12 @@ export interface Testimonial {
   name: string
   role: string
   company: string
+  /**
+   * Year the endorsement was given. Shown in the attribution: these are archival
+   * letters, and presenting a 2004 endorsement as if it were current would be
+   * the dishonest way to use them.
+   */
+  year: string
 }
 
 export interface Stat {
@@ -97,4 +132,6 @@ export interface Stat {
 export interface Client {
   name: string
   sector: string
+  /** Only cleared clients appear on the public client wall. */
+  cleared: boolean
 }

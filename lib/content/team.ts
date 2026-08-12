@@ -1,56 +1,64 @@
 import type { TeamMember } from "./types"
 
 /**
- * ⚠️ PLACEHOLDER — replace with real people, real roles and real photography.
+ * Current management, confirmed by the client (August 2026) and superseding the
+ * seven-person board in the 2017 company profile — Peter Walker, Adesuwa
+ * Garrick, Adegoke Oshunnyi, Anita Ogunleye, Andy Njoku-Obi, Sule Kokori and
+ * Okon Emmanuel are all off the site as a result.
  *
- * Names are intentionally generic rather than invented-but-plausible: an About
- * page is the one place where a realistic fake name could be mistaken for a real
- * employee. Photography replaces the generated plates here first — agencies sell
- * people, and this is the page where that matters most.
+ * ⚠️ The client has flagged that management is still changing, so treat this as
+ * current-but-provisional and re-confirm before launch.
+ *
+ * Bios are present only where the record supports one. Two of the three people
+ * below appear nowhere in any document we hold, and writing them a plausible
+ * career history would be inventing claims about a named private individual.
+ * The layout handles a missing bio; ask the client for real ones instead.
  */
 export const team: TeamMember[] = [
   {
-    name: "Placeholder Name",
-    role: "Founder & Chief Executive",
-    bio: "Twenty years across agency and client side, with a habit of asking what the business actually needs before anyone opens a design file.",
+    name: "Prince Dapo Adelegan",
+    role: "President & Chief Executive Officer",
+    /* Evidenced: the Federal Ministry of Information's 2010 letter credits him
+       by name as leading the Nigeria @ 50 Heathrow Express placement, and he
+       signed the 2017 Fidelity outdoor media mandate as MD/CEO. */
+    bio: "Named by the Federal Ministry of Information and Communications as leading the team behind the Nigeria @ 50 placement at Heathrow Express.",
     plate: { motif: "eclipse", tone: "clay" },
   },
   {
-    name: "Placeholder Name",
-    role: "Managing Director, Advertising",
-    bio: "Runs strategy and media. Has bought airtime in more markets than most people have visited.",
+    name: "Toba Benjamin Adelegan",
+    role: "Executive Director",
     plate: { motif: "column", tone: "ochre" },
   },
   {
-    name: "Placeholder Name",
-    role: "Managing Director, Entertainment",
-    bio: "Producer by training. Responsible for the tours, premieres and launches actually happening on the night.",
+    name: "Fajobi Comfort Oreoluwa",
+    role: "Head, Client Services",
     plate: { motif: "arc", tone: "deep" },
-  },
-  {
-    name: "Placeholder Name",
-    role: "Executive Creative Director",
-    bio: "Leads creative across both divisions and keeps the work from sounding like it was written in another continent.",
-    plate: { motif: "weave", tone: "clay" },
   },
 ]
 
-/** Territories with in-country teams or standing partners. */
-export const markets = [
-  "Nigeria",
-  "Ghana",
-  "Kenya",
-  "South Africa",
-  "Côte d'Ivoire",
-  "Senegal",
-  "Tanzania",
-  "Uganda",
-  "Rwanda",
-  "Zambia",
-  "Cameroon",
-  "Ethiopia",
-  "Morocco",
-  "Egypt",
+/**
+ * Territories with delivered work or a standing partner, per the company
+ * profile — not an aspirational footprint.
+ *
+ * Nigeria, the UK and South Africa all have executed projects behind them. The
+ * United States is partner reach only (Feintuch Communications, New York), as
+ * is the London entry beyond the campaigns themselves (Pielle Consulting). The
+ * profile's cover claims Lagos / London / New York / Johannesburg as offices,
+ * but page 11 shows London and New York are partner firms — so this list says
+ * "markets", and the About page says which is which.
+ */
+export const markets = ["Nigeria", "United Kingdom", "South Africa", "United States"]
+
+/** Named partner firms, so the About page can be specific about the reach. */
+export const partners = [
+  {
+    name: "Pielle Consulting Ltd",
+    location: "292 Vauxhall Bridge Road, Westminster, London",
+  },
+  {
+    name: "Feintuch Communications",
+    location: "245 Park Avenue, New York",
+  },
 ]
 
 /** How an engagement actually runs — shown on the services page. */

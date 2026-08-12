@@ -41,7 +41,7 @@ export const insights: Insight[] = [
       "Sponsorship ends when the invoice does. Owned cultural properties compound. A case for building rather than buying.",
     date: "2026-01-14",
     readingMinutes: 7,
-    category: "Entertainment",
+    category: "Sponsorship",
     author: "Placeholder Name",
     plate: { motif: "eclipse", tone: "deep" },
   },

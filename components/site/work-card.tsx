@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
 import { CampaignPlate } from "@/components/site/campaign-plate"
-import type { CaseStudy } from "@/lib/content"
+import { displayClient, type CaseStudy } from "@/lib/content"
 import { cn } from "@/lib/utils"
 
 /**
@@ -45,7 +45,7 @@ export function WorkCard({
       <div className="flex flex-col gap-4">
         <div className="text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
           <span className="text-accent-strong font-semibold tracking-wide uppercase">
-            {study.client}
+            {displayClient(study)}
           </span>
           <span aria-hidden="true" className="bg-border h-3 w-px" />
           <span>{study.sector}</span>
@@ -75,25 +75,37 @@ export function WorkCard({
           {study.summary}
         </p>
 
-        <dl
-          className={cn(
-            "border-border mt-2 grid grid-cols-3 gap-4 border-t pt-5",
-            isSplit && "max-w-lg"
-          )}
-        >
-          {study.results.map((result) => (
-            /* col-reverse so the value reads first visually while the DOM keeps
-               the required dt-then-dd order. */
-            <div key={result.label} className="flex flex-col-reverse gap-1">
-              <dt className="text-muted-foreground text-[0.7rem] leading-snug">
-                {result.label}
-              </dt>
-              <dd className="font-display text-foreground text-2xl leading-none font-semibold sm:text-3xl">
-                {result.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        {/* Archive projects can carry no reported metrics at all. An empty <dl>
+            would still paint its top rule and padding, reading as a broken row,
+            so the whole block is dropped rather than rendered hollow. */}
+        {study.results.length > 0 ? (
+          <dl
+            className={cn(
+              "border-border mt-2 grid gap-4 border-t pt-5",
+              /* Track count follows the data — three fixed columns would strand
+                 a single metric in a third of the card. */
+              study.results.length === 1
+                ? "grid-cols-1"
+                : study.results.length === 2
+                  ? "grid-cols-2"
+                  : "grid-cols-3",
+              isSplit && "max-w-lg"
+            )}
+          >
+            {study.results.map((result) => (
+              /* col-reverse so the value reads first visually while the DOM keeps
+                 the required dt-then-dd order. */
+              <div key={result.label} className="flex flex-col-reverse gap-1">
+                <dt className="text-muted-foreground text-[0.7rem] leading-snug">
+                  {result.label}
+                </dt>
+                <dd className="font-display text-foreground text-2xl leading-none font-semibold sm:text-3xl">
+                  {result.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
 
         <span className="text-foreground mt-1 inline-flex items-center gap-1.5 text-sm font-medium">
           <span className="link-rule">View case study</span>

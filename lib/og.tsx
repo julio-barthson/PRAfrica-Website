@@ -1,7 +1,26 @@
+import fs from "node:fs"
+import path from "node:path"
 import { ImageResponse } from "next/og"
 
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_CONTENT_TYPE = "image/png"
+
+/**
+ * The company mark, inlined as a data URI.
+ *
+ * Satori cannot fetch from the origin while the card is being generated, so the
+ * bytes have to be embedded. Read once at module scope: these cards are all
+ * prerendered at build time in the Node runtime, so this is a build-time read,
+ * not a per-request one.
+ *
+ * Sizes downstream must stay at or below the mark's native 235x61. It came off
+ * a page scan and has no detail above that — see components/site/wordmark.tsx.
+ */
+export const LOGO_DATA_URI = `data:image/png;base64,${fs
+  .readFileSync(path.join(process.cwd(), "public", "prafrica-logo.png"))
+  .toString("base64")}`
+
+export const LOGO_NATIVE = { width: 235, height: 61 }
 
 /**
  * Brand palette as literal hex.
@@ -104,12 +123,20 @@ export function ogCard({
           ) : null}
         </div>
 
+        {/* Footer lockup: the real mark rather than its name set in type.
+            Drawn at 188px against a 235px original, so it is downscaled and
+            stays sharp — the card never asks the scan for detail it lacks.
+
+            The mark stands alone. Setting "Selling Africa to the World" beside
+            it repeated the line twice on the home card, where the strapline is
+            already the headline. */}
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ fontSize: 30, fontWeight: 700, color: INK }}>PRAfrica</div>
-          <div style={{ width: 1, height: 26, backgroundColor: MUTED, margin: "0 20px" }} />
-          <div style={{ fontSize: 24, color: MUTED }}>
-            Advertising &amp; Entertainment · Africa
-          </div>
+          <img
+            src={LOGO_DATA_URI}
+            width={188}
+            height={49}
+            alt="PR Africa International"
+          />
         </div>
       </div>
     ),

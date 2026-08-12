@@ -1,16 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <!--
-    PRAfrica mark: the stacked-arc glyph from the wordmark.
+    "PR" monogram — the initials from the company mark.
 
-    Clay ground rather than sand so it holds its edge against both light and
-    dark browser chrome, and reduced to two solid domes plus a baseline rule
-    because strokes and fine detail disappear at 16px.
+    Why not the mark itself: the full lockup is 235x61, so at a 16px favicon the
+    wordmark would render about 4px tall and read as a grey smear. The 180px
+    apple-icon does carry the real lockup (see app/apple-icon.tsx); this size
+    cannot, so it reduces to the two letters the mark leads with.
 
-    The glyph is inset from all four edges: iOS applies its own corner mask to
-    the apple-icon, and anything running to the edge gets clipped by it.
+    Set as live text rather than outlined paths because there is no licensed
+    vector of the logo's serif here. A serif stack is close enough at this size —
+    Georgia and Times are near-universal, and Liberation Serif covers Linux.
+    Replace with real outlines when the client supplies the vector original.
+
+    Clay ground rather than the brand's white plate: a white tile disappears
+    into light browser chrome, and cream-on-clay holds its edge in both themes.
+    Everything is inset from the edges because iOS's corner mask clips anything
+    that runs to them.
   -->
   <rect width="32" height="32" rx="6" fill="#B44B29"/>
-  <path d="M4 21 A12 12 0 0 1 28 21 Z" fill="#FAF5ED"/>
-  <path d="M9.5 21 A6.5 6.5 0 0 1 22.5 21 Z" fill="#DD9A39"/>
-  <rect x="6" y="23.5" width="20" height="2.5" rx="1.25" fill="#FAF5ED"/>
+  <text
+    x="16" y="20.5"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', 'Liberation Serif', serif"
+    font-size="17"
+    font-weight="700"
+    letter-spacing="-0.6"
+    fill="#FAF5ED"
+  >PR</text>
+  <!-- Baseline rule, standing in for the swoosh under the wordmark. -->
+  <rect x="7" y="23.5" width="18" height="2.5" rx="1.25" fill="#DD9A39"/>
 </svg>

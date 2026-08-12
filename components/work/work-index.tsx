@@ -33,8 +33,8 @@ export function WorkIndex({
 
   const divisions: { id: DivisionFilter; label: string }[] = [
     { id: "all", label: "All work" },
-    { id: "advertising", label: "Advertising" },
-    { id: "entertainment", label: "Entertainment" },
+    { id: "branding", label: "Branding & Media" },
+    { id: "communications", label: "Communications" },
   ]
 
   return (

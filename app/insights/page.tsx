@@ -12,7 +12,7 @@ import { formatDate } from "@/lib/format"
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Notes on advertising, media and entertainment in African markets — from the team running the campaigns.",
+    "Notes on branding, media and communications in African markets — from the team running the campaigns.",
 }
 
 export default function InsightsPage() {

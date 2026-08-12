@@ -7,7 +7,13 @@ import { CampaignPlate } from "@/components/site/campaign-plate"
 import { Container } from "@/components/site/container"
 import { Reveal } from "@/components/site/reveal"
 import { Button } from "@/components/ui/button"
-import { caseStudies, getCaseStudy, getNextCaseStudy, site } from "@/lib/content"
+import {
+  caseStudies,
+  displayClient,
+  getCaseStudy,
+  getNextCaseStudy,
+  site,
+} from "@/lib/content"
 
 /** Prerender every case study at build time — the set is known and static. */
 export function generateStaticParams() {
@@ -22,11 +28,15 @@ export async function generateMetadata(
 
   if (!study) return {}
 
+  /* Metadata is as public as the page body — an uncleared client name would
+     leak straight into the <title> and the OG card. */
+  const client = displayClient(study)
+
   return {
-    title: `${study.title} — ${study.client}`,
+    title: `${study.title} — ${client}`,
     description: study.summary,
     openGraph: {
-      title: `${study.title} — ${study.client}`,
+      title: `${study.title} — ${client}`,
       description: study.summary,
       type: "article",
       url: `${site.url}/work/${study.slug}`,
@@ -55,7 +65,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
 
           <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span className="text-accent-strong font-semibold tracking-wide uppercase">
-              {study.client}
+              {displayClient(study)}
             </span>
             <span aria-hidden="true" className="bg-border h-3 w-px" />
             <span className="text-muted-foreground">{study.sector}</span>
@@ -79,19 +89,23 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </div>
 
         {/* Results promoted above the narrative: a buyer scanning this page is
-            looking for the number before they commit to reading the story. */}
-        <Reveal>
-          <dl className="border-border mt-14 grid gap-10 border-y py-10 sm:grid-cols-3">
-            {study.results.map((result) => (
-              <div key={result.label} className="flex flex-col-reverse gap-2">
-                <dt className="text-muted-foreground text-sm">{result.label}</dt>
-                <dd className="font-display text-[clamp(2.5rem,5vw,3.75rem)] leading-none font-semibold">
-                  {result.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+            looking for the number before they commit to reading the story.
+            Omitted entirely where the archive holds no reported outcome — the
+            band's own rules would otherwise frame an empty strip. */}
+        {study.results.length > 0 ? (
+          <Reveal>
+            <dl className="border-border mt-14 grid gap-10 border-y py-10 sm:grid-cols-3">
+              {study.results.map((result) => (
+                <div key={result.label} className="flex flex-col-reverse gap-2">
+                  <dt className="text-muted-foreground text-sm">{result.label}</dt>
+                  <dd className="font-display text-[clamp(2.5rem,5vw,3.75rem)] leading-none font-semibold">
+                    {result.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        ) : null}
 
         <div className="mt-16 grid gap-14 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-20">
           <Reveal className="flex flex-col gap-12">
@@ -107,7 +121,9 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                 <figcaption className="text-muted-foreground mt-4 text-sm">
                   <span className="text-foreground font-semibold">{study.quote.name}</span>
                   {", "}
-                  {study.quote.role}, {study.client}
+                  {/* `org` carries the endorsing body where that is not the
+                      commissioning client — a ministry or a secretariat. */}
+                  {study.quote.role}, {study.quote.org ?? displayClient(study)}
                 </figcaption>
               </figure>
             ) : null}
@@ -136,7 +152,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
               </h2>
               <Button asChild size="xl" variant="outline">
                 <Link href={`/work/${next.slug}`}>
-                  {next.client}
+                  {displayClient(next)}
                   <ArrowRight data-icon="inline-end" aria-hidden="true" />
                 </Link>
               </Button>

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 
-import { caseStudies, getCaseStudy } from "@/lib/content"
+import { caseStudies, displayClient, getCaseStudy } from "@/lib/content"
 import { OG_CONTENT_TYPE, OG_SIZE, ogCard } from "@/lib/og"
 
 export const alt = "PRAfrica case study"
@@ -18,7 +18,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   if (!study) notFound()
 
   return ogCard({
-    eyebrow: study.client,
+    /* Social cards are the most widely redistributed surface on the site, so
+       the clearance check matters more here than anywhere. */
+    eyebrow: displayClient(study),
     title: study.title,
     meta: `${study.sector} · ${study.markets.join(", ")} · ${study.year}`,
   })

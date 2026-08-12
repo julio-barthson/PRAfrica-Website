@@ -48,21 +48,23 @@ export function Hero() {
           <Reveal className="flex items-center gap-3">
             <span aria-hidden="true" className="bg-primary h-px w-8 shrink-0" />
             <span className="eyebrow text-accent-strong">
-              Advertising &amp; Entertainment · Africa
+              Integrated Marketing Communications · Africa
             </span>
           </Reveal>
 
           <Reveal delay={80}>
+            {/* The company's own line since 1999, and better than anything we
+                would write for it. */}
             <h1 className="font-display mt-7 text-[clamp(2.75rem,8vw,6.25rem)] leading-[0.92] font-semibold">
-              We build brands that move a continent.
+              Selling Africa to the world.
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
             <p className="text-muted-foreground mt-8 max-w-xl text-lg leading-relaxed">
-              PRAfrica plans, produces and buys campaigns for international and
-              local brands across African markets — and puts them in front of the
-              people who actually decide.
+              PR Africa International handles country branding, trade and
+              investment promotion, public relations and advocacy for public and
+              private sector organisations — from Lagos to Heathrow to OR Tambo.
             </p>
           </Reveal>
 
