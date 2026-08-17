@@ -12,13 +12,13 @@ const DIVISIONS: { id: Division; label: string; blurb: string }[] = [
     id: "branding",
     label: "Branding & Media",
     blurb:
-      "Bought visibility — country branding, airport and outdoor placement, and the sponsors who fund it.",
+      "Bought visibility, country branding, airport and outdoor placement, and the sponsors who fund it.",
   },
   {
     id: "communications",
     label: "Communications",
     blurb:
-      "Earned standing — press, advocacy, trade promotion and the conferences that convene the room.",
+      "Earned standing, press, advocacy, trade promotion and the conferences that convene the room.",
   },
 ]
 
@@ -41,7 +41,7 @@ export function CapabilitiesSection() {
                 standing you earn.
               </>
             }
-            lead="Most mandates need both — a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. We run them out of the same room."
+            lead="Most mandates need both, a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. We run them out of the same room."
           />
         </Reveal>
 
@@ -50,7 +50,7 @@ export function CapabilitiesSection() {
             <Reveal
               key={division.id}
               delay={dIndex * 120}
-              className="border-border flex flex-col border-t pt-8"
+              className="flex flex-col border-t border-border pt-8"
             >
               <div className="flex items-baseline gap-3">
                 <span className="eyebrow text-accent-strong tabular-nums">
@@ -60,7 +60,7 @@ export function CapabilitiesSection() {
                   {division.label}
                 </h3>
               </div>
-              <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {division.blurb}
               </p>
 
@@ -68,18 +68,21 @@ export function CapabilitiesSection() {
                 {capabilities
                   .filter((c) => c.division === division.id)
                   .map((capability) => (
-                    <li key={capability.title} className="flex flex-col gap-2.5">
-                      <h4 className="text-foreground text-base font-semibold">
+                    <li
+                      key={capability.title}
+                      className="flex flex-col gap-2.5"
+                    >
+                      <h4 className="text-base font-semibold text-foreground">
                         {capability.title}
                       </h4>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-sm leading-relaxed text-muted-foreground">
                         {capability.description}
                       </p>
                       <ul className="mt-1 flex flex-wrap gap-x-2 gap-y-2">
                         {capability.offerings.map((offering) => (
                           <li
                             key={offering}
-                            className="border-border text-muted-foreground rounded-sm border px-2.5 py-1 text-xs"
+                            className="rounded-sm border border-border px-2.5 py-1 text-xs text-muted-foreground"
                           >
                             {offering}
                           </li>
