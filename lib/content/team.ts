@@ -47,7 +47,12 @@ export const team: TeamMember[] = [
  * but page 11 shows London and New York are partner firms — so this list says
  * "markets", and the About page says which is which.
  */
-export const markets = ["Nigeria", "United Kingdom", "South Africa", "United States"]
+export const markets = [
+  "Nigeria",
+  "United Kingdom",
+  "South Africa",
+  "United States",
+]
 
 /** Named partner firms, so the About page can be specific about the reach. */
 export const partners = [
@@ -76,7 +81,7 @@ export const engagementSteps = [
   {
     title: "Produce",
     description:
-      "Creative, film, events and activation — produced in-market with local crews and local permits.",
+      "Creative, film, events and activation, produced in-market with local crews and local permits.",
   },
   {
     title: "Run & report",

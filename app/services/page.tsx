@@ -42,13 +42,15 @@ export default function ServicesPage() {
             standing you earn.
           </>
         }
-        lead="Most mandates need both — a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. Running them separately is how the two end up contradicting each other."
+        lead="Most mandates need both, a placement that puts you in front of the right audience, and the press and advocacy that make you worth finding there. Running them separately is how the two end up contradicting each other."
       />
 
       {DIVISIONS.map((division, dIndex) => (
         <section
           key={division.id}
-          className={dIndex % 2 === 1 ? "bg-muted/40 border-border border-y" : ""}
+          className={
+            dIndex % 2 === 1 ? "border-y border-border bg-muted/40" : ""
+          }
         >
           <Container className="py-16 lg:py-24">
             <Reveal className="flex flex-col gap-4">
@@ -60,7 +62,7 @@ export default function ServicesPage() {
                   {division.label}
                 </h2>
               </div>
-              <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {division.blurb}
               </p>
             </Reveal>
@@ -72,19 +74,19 @@ export default function ServicesPage() {
                   <Reveal
                     key={capability.title}
                     delay={(i % 2) * 100}
-                    className="border-border flex flex-col gap-3 border-t pt-6"
+                    className="flex flex-col gap-3 border-t border-border pt-6"
                   >
                     <h3 className="font-display text-xl font-semibold sm:text-2xl">
                       {capability.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {capability.description}
                     </p>
                     <ul className="mt-2 flex flex-wrap gap-2">
                       {capability.offerings.map((offering) => (
                         <li
                           key={offering}
-                          className="border-border text-muted-foreground rounded-sm border px-2.5 py-1 text-xs"
+                          className="rounded-sm border border-border px-2.5 py-1 text-xs text-muted-foreground"
                         >
                           {offering}
                         </li>
@@ -101,7 +103,7 @@ export default function ServicesPage() {
         <Container>
           <Reveal className="flex flex-col gap-4">
             <span className="eyebrow text-accent-strong">How we work</span>
-            <h2 className="font-display max-w-2xl text-[clamp(2rem,4.4vw,3.25rem)] leading-[1.02] font-semibold">
+            <h2 className="max-w-2xl font-display text-[clamp(2rem,4.4vw,3.25rem)] leading-[1.02] font-semibold">
               What an engagement actually looks like.
             </h2>
           </Reveal>
@@ -112,7 +114,7 @@ export default function ServicesPage() {
                 key={step.title}
                 delay={i * 90}
                 as="li"
-                className="border-border flex flex-col gap-3 border-t pt-6"
+                className="flex flex-col gap-3 border-t border-border pt-6"
               >
                 <span className="eyebrow text-accent-strong tabular-nums">
                   0{i + 1}
@@ -120,7 +122,7 @@ export default function ServicesPage() {
                 <h3 className="font-display text-xl leading-tight font-semibold">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {step.description}
                 </p>
               </Reveal>

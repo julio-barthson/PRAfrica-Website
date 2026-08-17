@@ -13,7 +13,7 @@ export const capabilities: Capability[] = [
   {
     title: "Country Branding & Marketing",
     description:
-      "Positioning a nation to an international audience — the campaign, the placement and the government relations that make both possible.",
+      "Positioning a nation to an international audience, the campaign, the placement and the government relations that make both possible.",
     division: "branding",
     offerings: [
       "Nation brand platforms",
@@ -25,7 +25,7 @@ export const capabilities: Capability[] = [
   {
     title: "Global Outdoor & Airport Media",
     description:
-      "Buying and holding high-value out-of-home sites in international hubs — Heathrow, OR Tambo — and on the corridors that matter at home.",
+      "Buying and holding high-value out-of-home sites in international hubs, Heathrow, OR Tambo, and on the corridors that matter at home.",
     division: "branding",
     offerings: [
       "Airport terminal placement",
@@ -61,7 +61,7 @@ export const capabilities: Capability[] = [
   {
     title: "Trade & Investment Promotion",
     description:
-      "Putting exporters in front of buyers and investors in front of opportunity — exhibitions, forums and the federal partnerships behind them.",
+      "Putting exporters in front of buyers and investors in front of opportunity, exhibitions, forums and the federal partnerships behind them.",
     division: "communications",
     offerings: [
       "Trade exhibitions",
@@ -85,7 +85,7 @@ export const capabilities: Capability[] = [
   {
     title: "Conference & Event Management",
     description:
-      "Multi-day conferences and exhibitions run end to end — delegates, venues, volunteers, accreditation and press.",
+      "Multi-day conferences and exhibitions run end to end, delegates, venues, volunteers, accreditation and press.",
     division: "communications",
     offerings: [
       "Programme co-ordination",
@@ -137,10 +137,18 @@ export const stats: Stat[] = [
 export const clients: Client[] = [
   { name: "Federal Republic of Nigeria", sector: "Government", cleared: true },
   { name: "Nigerian Export Promotion Council", sector: "Trade", cleared: true },
-  { name: "Nigerian Investment Promotion Commission", sector: "Investment", cleared: true },
+  {
+    name: "Nigerian Investment Promotion Commission",
+    sector: "Investment",
+    cleared: true,
+  },
   { name: "NEPAD Secretariat", sector: "Multilateral", cleared: true },
   { name: "UNESCO", sector: "Multilateral", cleared: true },
-  { name: "Central Bank of Nigeria", sector: "Financial policy", cleared: true },
+  {
+    name: "Central Bank of Nigeria",
+    sector: "Financial policy",
+    cleared: true,
+  },
   { name: "Education Trust Fund", sector: "Education", cleared: true },
   { name: "ICASA", sector: "Public health", cleared: true },
   { name: "GTBank Plc", sector: "Banking", cleared: false },

@@ -89,7 +89,7 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     narrative: {
       challenge:
-        "Nigeria's fiftieth independence anniversary needed to be visible somewhere that mattered to the audience it was aimed at — international business travellers, diaspora and the London media — rather than only at home. The \"Good People, Great Nation\" platform existed. A place to run it did not.",
+        'Nigeria\'s fiftieth independence anniversary needed to be visible somewhere that mattered to the audience it was aimed at, international business travellers, diaspora and the London media, rather than only at home. The "Good People, Great Nation" platform existed. A place to run it did not.',
       approach:
         "We secured thirty advertising panels at Heathrow Express station, the corridor every passenger travelling from Heathrow into central London passes through, and brought in a commercial sponsor to fund the placement rather than asking the campaign to carry the cost alone.",
       outcome:
@@ -114,7 +114,7 @@ export const caseStudies: CaseStudy[] = [
     clientCleared: true,
     title: "Eight thousand delegates, one hundred and two hotels",
     summary:
-      "Project co-ordination for the continent's largest HIV/AIDS conference — five days, sixteen countries and a $4m operating budget.",
+      "Project co-ordination for the continent's largest HIV/AIDS conference, five days, sixteen countries and a $4m operating budget.",
     division: "communications",
     sector: "Public health",
     markets: ["Nigeria"],
@@ -175,7 +175,7 @@ export const caseStudies: CaseStudy[] = [
       challenge:
         "Nigerian manufacturers had product to export and no forum in which international buyers could see it. Trade promotion at the time meant delegations and paperwork, not a room where someone could pick a product up.",
       approach:
-        "MINEX — Made in Nigeria Exhibitions — was built as a recurring exhibition franchise rather than a one-off event, in partnership with the Nigerian Export Promotion Council and the Nigerian Investment Promotion Commission. It opened at the Barbican Centre in London in 1999, moved to Wembley Arena in 2000, and ran at the Sandton Convention Centre in Johannesburg from 2004 to 2006 as the focus shifted to intra-African trade.",
+        "MINEX, Made in Nigeria Exhibitions — was built as a recurring exhibition franchise rather than a one-off event, in partnership with the Nigerian Export Promotion Council and the Nigerian Investment Promotion Commission. It opened at the Barbican Centre in London in 1999, moved to Wembley Arena in 2000, and ran at the Sandton Convention Centre in Johannesburg from 2004 to 2006 as the focus shifted to intra-African trade.",
       outcome:
         "The franchise ran for eight years across three venues on two continents, and drew formal endorsement from both the Presidency and the NEPAD Secretariat.",
     },
@@ -219,7 +219,7 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     narrative: {
       challenge:
-        "The bank had listed on the London Stock Exchange and operated across five countries, but outside its home market it still read as a regional institution. The claim it needed to make — African in origin, international in standard — is one nobody believes from a press release.",
+        "The bank had listed on the London Stock Exchange and operated across five countries, but outside its home market it still read as a regional institution. The claim it needed to make, African in origin, international in standard, is one nobody believes from a press release.",
       approach:
         "We placed it where the claim proves itself: the arrivals halls, baggage reclaims and transit corridors of two international hub airports, in London and Johannesburg, alongside roadside placement on the approach to OR Tambo. Message production, installation and maintenance were run in-market at both ends.",
       outcome:
@@ -259,11 +259,11 @@ export const caseStudies: CaseStudy[] = [
     plate: { motif: "weave", tone: "sand" },
     narrative: {
       challenge:
-        "The bank wanted to own the arrival moment at Heathrow for a full calendar year — a placement that only works if the sites are held continuously and the creative is refreshed inside the run, rather than bought as a single burst and left to go stale.",
+        "The bank wanted to own the arrival moment at Heathrow for a full calendar year, a placement that only works if the sites are held continuously and the creative is refreshed inside the run, rather than bought as a single burst and left to go stale.",
       approach:
-        "We structured the buy across two terminals and three formats: ten arrival scrollers at Terminal 5, five \"Welcome to London\" arrival light boxes at Terminal 3, and five departure light boxes at Terminal 3, staggered so coverage held across the year. Production, installation and maintenance were included in the fee across three creative iterations.",
+        'We structured the buy across two terminals and three formats: ten arrival scrollers at Terminal 5, five "Welcome to London" arrival light boxes at Terminal 3, and five departure light boxes at Terminal 3, staggered so coverage held across the year. Production, installation and maintenance were included in the fee across three creative iterations.',
       outcome:
-        "The programme ran from January to December and was itself a renewal of the previous year's placement — the clearest signal available that the first run had worked.",
+        "The programme ran from January to December and was itself a renewal of the previous year's placement, the clearest signal available that the first run had worked.",
     },
     deliverables: [
       "Ten arrival scrollers, Terminal 5",
@@ -280,7 +280,7 @@ export const caseStudies: CaseStudy[] = [
     clientAnonymous: "Nigerian commercial bank",
     title: "Buying the outdoor, then checking it was there",
     summary:
-      "Appointed oversight agency for a bank's national outdoor media — responsible not just for the buy but for verifying it ran.",
+      "Appointed oversight agency for a bank's national outdoor media, responsible not just for the buy but for verifying it ran.",
     division: "branding",
     sector: "Banking",
     markets: ["Nigeria"],
@@ -291,9 +291,7 @@ export const caseStudies: CaseStudy[] = [
       "Vendor management",
       "Campaign reporting",
     ],
-    results: [
-      { value: "3", label: "Formats: unipole, gantry, bus shelter" },
-    ],
+    results: [{ value: "3", label: "Formats: unipole, gantry, bus shelter" }],
     plate: { motif: "column", tone: "clay" },
     narrative: {
       challenge:

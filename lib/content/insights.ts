@@ -16,11 +16,11 @@ export const insights: Insight[] = [
     slug: "media-buying-is-not-one-market",
     title: "Africa is not one media market, and buying it as one is expensive",
     summary:
-      "Why a single continental media plan usually underperforms three cheaper local ones — and how to tell which markets can share a buy.",
+      "Why a single continental media plan usually underperforms three cheaper local ones, and how to tell which markets can share a buy.",
     date: "2026-05-19",
     readingMinutes: 6,
     category: "Media",
-    author: "Placeholder Name",
+    author: "PRAfrica Limited",
     plate: { motif: "column", tone: "clay" },
   },
   {
@@ -31,7 +31,7 @@ export const insights: Insight[] = [
     date: "2026-03-02",
     readingMinutes: 5,
     category: "Strategy",
-    author: "Placeholder Name",
+    author: "PRAfrica Limited",
     plate: { motif: "weave", tone: "ochre" },
   },
   {
@@ -42,7 +42,7 @@ export const insights: Insight[] = [
     date: "2026-01-14",
     readingMinutes: 7,
     category: "Sponsorship",
-    author: "Placeholder Name",
+    author: "PRAfrica Limited",
     plate: { motif: "eclipse", tone: "deep" },
   },
 ]

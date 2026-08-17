@@ -13,8 +13,8 @@ export const site = {
    * If the site is served from a different domain, change it here only.
    *
    * Note the conflict: the company profile gives the CEO's address as
-   * ceo@celtrongroup.com and points to celtrongroup.com, because PRAfrica is
-   * one of three companies in the Celtron Group alongside Celtron Nigeria and
+   * ceo@prafricalimited.com and points to prafricalimited.com, because PRAfrica is
+   * one of three companies in the PRAfrica Limited alongside PRAfrica Limited and
    * MediaStar. Confirm which entity this site represents.
    */
   url: "https://prafricalimited.com",
