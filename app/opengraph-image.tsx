@@ -1,7 +1,7 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogCard } from "@/lib/og"
 
 export const alt =
-  "PR Africa International — integrated marketing communications across Africa"
+  "PR Africa International | integrated marketing communications across Africa"
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE
 

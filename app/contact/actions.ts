@@ -31,7 +31,10 @@ export async function submitBrief(
   formData: FormData
 ): Promise<ContactState> {
   const values = Object.fromEntries(
-    CONTACT_FIELDS.map((field) => [field, String(formData.get(field) ?? "").trim()])
+    CONTACT_FIELDS.map((field) => [
+      field,
+      String(formData.get(field) ?? "").trim(),
+    ])
   ) as Record<ContactField, string>
 
   // Honeypot: a hidden field that only an automated submitter fills in. Return
@@ -51,7 +54,7 @@ export async function submitBrief(
   }
 
   if (values.brief && values.brief.length < 20) {
-    errors.brief = "Tell us a little more — at least a couple of sentences."
+    errors.brief = "Tell us a little more | at least a couple of sentences."
   }
 
   if (Object.keys(errors).length > 0) {
@@ -67,7 +70,10 @@ export async function submitBrief(
   // correcting a typo three times doesn't get locked out.
   const headerList = await headers()
   const forwardedFor = headerList.get("x-forwarded-for")
-  const ip = forwardedFor?.split(",")[0]?.trim() || headerList.get("x-real-ip") || "unknown"
+  const ip =
+    forwardedFor?.split(",")[0]?.trim() ||
+    headerList.get("x-real-ip") ||
+    "unknown"
   const { allowed, retryAfter } = checkRateLimit(ip)
 
   if (!allowed) {
@@ -92,6 +98,6 @@ export async function submitBrief(
 
   return {
     status: "success",
-    message: "Thanks — we'll come back to you within two working days.",
+    message: "Thanks | we'll come back to you within two working days.",
   }
 }

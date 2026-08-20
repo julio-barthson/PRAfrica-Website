@@ -29,6 +29,15 @@ export interface Plate {
   tone: "clay" | "ochre" | "deep" | "sand"
 }
 
+export interface CampaignImage {
+  /** Path under /public. */
+  src: string
+  alt: string
+  /** Intrinsic pixel size of the file — never the display size. */
+  width: number
+  height: number
+}
+
 export interface CaseStudy {
   slug: string
   /** The real client. Only rendered when `clientCleared` is true — see work.ts. */
@@ -59,6 +68,21 @@ export interface CaseStudy {
    */
   results: { value: string; label: string }[]
   plate: Plate
+  /**
+   * Campaign photograph, as a path under /public. Optional: only some projects
+   * have usable imagery, and the rest fall back to `plate`.
+   *
+   * Every one of these was recovered from the flattened page rasters of the
+   * company profile PDF, so they top out around 410px wide. That is the real
+   * ceiling, not a placeholder — render them at card size and do not blow them
+   * up into heroes until original camera files are recovered.
+   */
+  image?: CampaignImage
+  /**
+   * Further photographs of the same campaign, shown as a gallery on the detail
+   * page. Same provenance and same size ceiling as `image`.
+   */
+  gallery?: CampaignImage[]
   featured?: boolean
   /** The case study body. Three beats is the whole story a buyer needs. */
   narrative: {

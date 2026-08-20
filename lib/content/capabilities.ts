@@ -149,10 +149,16 @@ export const clients: Client[] = [
     sector: "Financial policy",
     cleared: true,
   },
+  {
+    name: "Federal Ministry of Information",
+    sector: "Government",
+    cleared: true,
+  },
   { name: "Education Trust Fund", sector: "Education", cleared: true },
   { name: "ICASA", sector: "Public health", cleared: true },
   { name: "GTBank Plc", sector: "Banking", cleared: false },
   { name: "First Bank of Nigeria", sector: "Banking", cleared: false },
+  { name: "United Bank for Africa Plc", sector: "Banking", cleared: false },
   { name: "Fidelity Bank Plc", sector: "Banking", cleared: false },
 ]
 

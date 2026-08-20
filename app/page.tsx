@@ -10,8 +10,12 @@ export default function HomePage() {
     <>
       <Hero />
       <ClientWall />
-      <CapabilitiesSection />
+      {/* Work sits above capabilities deliberately. This is a visual agency and
+          the campaign photography is the argument — running three sections of
+          type before the first photograph made a visitor read the pitch before
+          seeing any proof of it. */}
       <FeaturedWork />
+      <CapabilitiesSection />
       <TestimonialSection />
       <ContactCta />
     </>

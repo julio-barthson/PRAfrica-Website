@@ -29,6 +29,14 @@ import type { CaseStudy } from "./types"
  *
  * Flip to `true` only when permission is on file for every client whose
  * `clientCleared` is false below.
+ *
+ * ⚠️ THIS FLAG NO LONGER ACHIEVES ANONYMITY. The campaign photography added to
+ * these entries shows the clients' own logos and copy on the hoardings — the
+ * bank is legible in the picture whatever the caption says. A page that reads
+ * "Nigerian commercial bank" above a photograph of that bank's billboard is not
+ * discreet, it is merely inconsistent. The real choice is now binary: get the
+ * permissions and flip this to `true`, or pull the photographs. Leaving it here
+ * at `false` with the images live is the one option that protects nobody.
  */
 export const CLIENT_NAMES_CLEARED = false
 
@@ -66,6 +74,20 @@ export function toPublicCaseStudy(study: CaseStudy): CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "nigeria-50-heathrow-express",
+    gallery: [
+      {
+        src: "/campaigns/heathrow-nigeria-good-people-escalator.jpg",
+        alt: "Travellers on the escalator beneath the Nigeria — Good People, Great Nation panel at Heathrow.",
+        width: 421,
+        height: 264,
+      },
+    ],
+    image: {
+      src: "/campaigns/heathrow-nigeria-good-people-express.jpg",
+      alt: "The Nigeria — Good People, Great Nation panel lit above the Heathrow Express platform at Heathrow.",
+      width: 421,
+      height: 256,
+    },
     client: "Federal Republic of Nigeria",
     clientCleared: true,
     title: "Nigeria at fifty, on the way in from Heathrow",
@@ -131,7 +153,6 @@ export const caseStudies: CaseStudy[] = [
       { value: "102", label: "Hotels across the host city" },
     ],
     plate: { motif: "weave", tone: "ochre" },
-    featured: true,
     narrative: {
       challenge:
         "ICASA 2005 brought over eight thousand participants from sixteen countries to Abuja for five days across twelve sessions. An event at that scale fails on logistics long before it fails on content: accommodation, movement, accreditation and press all have to work simultaneously in a city that has to absorb the load.",
@@ -175,7 +196,7 @@ export const caseStudies: CaseStudy[] = [
       challenge:
         "Nigerian manufacturers had product to export and no forum in which international buyers could see it. Trade promotion at the time meant delegations and paperwork, not a room where someone could pick a product up.",
       approach:
-        "MINEX, Made in Nigeria Exhibitions — was built as a recurring exhibition franchise rather than a one-off event, in partnership with the Nigerian Export Promotion Council and the Nigerian Investment Promotion Commission. It opened at the Barbican Centre in London in 1999, moved to Wembley Arena in 2000, and ran at the Sandton Convention Centre in Johannesburg from 2004 to 2006 as the focus shifted to intra-African trade.",
+        "MINEX, Made in Nigeria Exhibitions, was built as a recurring exhibition franchise rather than a one-off event, in partnership with the Nigerian Export Promotion Council and the Nigerian Investment Promotion Commission. It opened at the Barbican Centre in London in 1999, moved to Wembley Arena in 2000, and ran at the Sandton Convention Centre in Johannesburg from 2004 to 2006 as the focus shifted to intra-African trade.",
       outcome:
         "The franchise ran for eight years across three venues on two continents, and drew formal endorsement from both the Presidency and the NEPAD Secretariat.",
     },
@@ -195,6 +216,50 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "airport-global-visibility",
+    gallery: [
+      {
+        src: "/campaigns/heathrow-gtbank-african-brand.jpg",
+        alt: "GTBank “African brand. International standards.” panel along a Heathrow corridor.",
+        width: 382,
+        height: 249,
+      },
+      {
+        src: "/campaigns/heathrow-gtbank-first-african-bank.jpg",
+        alt: "GTBank “First African Bank, First Nigerian Company listed on the London Stock Exchange” lightbox under the Heathrow baggage reclaim gantry.",
+        width: 385,
+        height: 262,
+      },
+      {
+        src: "/campaigns/heathrow-gtbank-proudly-african.jpg",
+        alt: "GTBank “Proudly African, Truly International” lightbox beside the Arrivals and Baggage Reclaim gantry at Heathrow.",
+        width: 414,
+        height: 277,
+      },
+      {
+        src: "/campaigns/ortambo-gtbank-baggage-hall.jpg",
+        alt: "GTBank banner above the empty carousels in the OR Tambo baggage hall.",
+        width: 413,
+        height: 259,
+      },
+      {
+        src: "/campaigns/ortambo-gtbank-banking-hall.jpg",
+        alt: "GTBank fascia running above the banking machines in the OR Tambo arrivals hall.",
+        width: 411,
+        height: 254,
+      },
+      {
+        src: "/campaigns/ortambo-gtbank-approach-road.jpg",
+        alt: "GTBank billboard on the terminal approach road at OR Tambo, Johannesburg.",
+        width: 411,
+        height: 260,
+      },
+    ],
+    image: {
+      src: "/campaigns/ortambo-gtbank-arrivals-concourse.jpg",
+      alt: "GTBank’s “Proudly African, Truly International” fascia running the width of the arrivals concourse at OR Tambo, Johannesburg.",
+      width: 413,
+      height: 266,
+    },
     client: "GTBank Plc",
     clientCleared: false,
     clientAnonymous: "Pan-African banking group",
@@ -235,6 +300,20 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "heathrow-terminal-programme",
+    gallery: [
+      {
+        src: "/campaigns/heathrow-firstbank-terminal-lightbox.jpg",
+        alt: "First Bank lightbox on the glazed wall of a Heathrow terminal, beside the B Gates sign.",
+        width: 410,
+        height: 234,
+      },
+    ],
+    image: {
+      src: "/campaigns/heathrow-firstbank-london-2012.jpg",
+      alt: "First Bank “Let us be the FirstBank to welcome you” screen at a Heathrow London 2012 volunteer desk.",
+      width: 410,
+      height: 254,
+    },
     client: "First Bank of Nigeria",
     clientCleared: false,
     clientAnonymous: "Leading Nigerian commercial bank",
@@ -275,6 +354,33 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "outdoor-media-oversight",
+    featured: true,
+    gallery: [
+      {
+        src: "/campaigns/fidelity-770-highway-billboard.jpg",
+        alt: "Fidelity Bank *770# billboard beside a Lagos expressway flyover.",
+        width: 370,
+        height: 188,
+      },
+      {
+        src: "/campaigns/fidelity-770-bus-shelter.jpg",
+        alt: "Fidelity Bank *770# panels wrapping a Lagos bus shelter.",
+        width: 213,
+        height: 165,
+      },
+      {
+        src: "/campaigns/fidelity-770-roadside-kiosk.jpg",
+        alt: "Fidelity Bank *770# roadside wall and kiosk branding in Lagos.",
+        width: 212,
+        height: 160,
+      },
+    ],
+    image: {
+      src: "/campaigns/fidelity-770-gantry-expressway.jpg",
+      alt: "Fidelity Bank *770# gantry billboard above queuing traffic on a Lagos expressway.",
+      width: 317,
+      height: 188,
+    },
     client: "Fidelity Bank Plc",
     clientCleared: false,
     clientAnonymous: "Nigerian commercial bank",
@@ -307,6 +413,79 @@ export const caseStudies: CaseStudy[] = [
       "Independent monitoring and verification",
       "Vendor negotiation and management",
       "Campaign reporting against the buy",
+    ],
+  },
+  /**
+   * Provenance note: the award letter for this engagement (profile pp. 25-26)
+   * is addressed to Celtron Nigeria Limited, not to PRAfrica International.
+   * Both sit under the Celtron Group alongside MediaStar — see the group
+   * visibility page of the profile — so this is a group credential rather than
+   * one PRAfrica holds in its own name. Worth stating plainly if a prospect
+   * asks who signed the contract.
+   */
+  {
+    slug: "uba-lagos-tennis-club",
+    gallery: [
+      {
+        src: "/campaigns/uba-tennis-club-perimeter.jpg",
+        alt: "Bank branding running the length of the perimeter wall walkway at the Lagos Tennis Club.",
+        width: 219,
+        height: 173,
+      },
+      {
+        src: "/campaigns/uba-atm-alcove.jpg",
+        alt: "Branded surround framing a two-machine ATM alcove at the site.",
+        width: 203,
+        height: 173,
+      },
+      {
+        src: "/campaigns/uba-umobile-facade.jpg",
+        alt: "“Bank on your Phone… Take Control with U-Mobile” fascia running the width of a branded building frontage.",
+        width: 398,
+        height: 180,
+      },
+    ],
+    image: {
+      src: "/campaigns/uba-lagos-tennis-club.jpg",
+      alt: "Courtside hoarding reading “Open an account with UBA today and enjoy loads of benefits” behind the tennis courts at Tafawa Balewa Square.",
+      width: 350,
+      height: 188,
+    },
+    client: "United Bank for Africa Plc",
+    clientCleared: false,
+    clientAnonymous: "Tier-one Nigerian bank",
+    title: "A landmark rebranded in thirty days",
+    summary:
+      "Site-wide branding of the Lagos Tennis Club at Tafawa Balewa Square — courtside, perimeter, ATM lobby and frontage — delivered inside a thirty-day window from award.",
+    division: "branding",
+    sector: "Banking",
+    markets: ["Nigeria"],
+    year: 2014,
+    services: [
+      "Environmental and site branding",
+      "Production and installation",
+      "Vendor and contract management",
+      "Delivery against a fixed window",
+    ],
+    results: [
+      { value: "₦20m", label: "Contract value, VAT exclusive" },
+      { value: "30 days", label: "Delivery window from date of award" },
+      { value: "4", label: "Surfaces branded across the site" },
+    ],
+    plate: { motif: "eclipse", tone: "ochre" },
+    narrative: {
+      challenge:
+        "The bank had taken branding rights over a Lagos Island landmark and set a thirty-day completion window running from the date of award. A site of that kind is not a single surface: it is courtside hoarding, a long perimeter wall, a public ATM lobby and a building frontage, each with its own substrate and its own installation problem, all of which had to land together.",
+      approach:
+        "The engagement was awarded against a performance bond covering the full contract sum, so the schedule carried a financial consequence and was planned backwards from the deadline rather than forwards from the brief. Scope, production and installation were held under one contract to keep a single party accountable for the whole site.",
+      outcome:
+        "The site was branded across all four surfaces — courtside hoarding, perimeter wall, ATM alcove and the U-Mobile frontage — and the letter of acceptance was countersigned inside the contract period.",
+    },
+    deliverables: [
+      "Courtside hoarding along the tennis courts",
+      "Perimeter wall branding to the walkway",
+      "Branded surround to the public ATM alcove",
+      "U-Mobile fascia across the building frontage",
     ],
   },
 ]

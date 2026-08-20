@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight } from "lucide-react"
@@ -33,10 +34,10 @@ export async function generateMetadata(
   const client = displayClient(study)
 
   return {
-    title: `${study.title} — ${client}`,
+    title: `${study.title} | ${client}`,
     description: study.summary,
     openGraph: {
-      title: `${study.title} — ${client}`,
+      title: `${study.title} | ${client}`,
       description: study.summary,
       type: "article",
       url: `${site.url}/work/${study.slug}`,
@@ -52,41 +53,87 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
 
   const next = getNextCaseStudy(slug)
 
+  /* The card image leads the gallery so the shot a visitor clicked through from
+     is the first one they see here, with `gallery` carrying the rest. */
+  const gallery = [
+    ...(study.image ? [study.image] : []),
+    ...(study.gallery ?? []),
+  ]
+
   return (
     <article>
-      <header className="border-border border-b">
+      <header className="border-b border-border">
         <Container className="pt-12 pb-14 lg:pt-16 lg:pb-16">
           <Link
             href="/work"
-            className="text-muted-foreground hover:text-foreground link-rule focus-visible:ring-ring text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            className="link-rule text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             ← All work
           </Link>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <span className="text-accent-strong font-semibold tracking-wide uppercase">
+            <span className="font-semibold tracking-wide text-accent-strong uppercase">
               {displayClient(study)}
             </span>
-            <span aria-hidden="true" className="bg-border h-3 w-px" />
+            <span aria-hidden="true" className="h-3 w-px bg-border" />
             <span className="text-muted-foreground">{study.sector}</span>
-            <span aria-hidden="true" className="bg-border h-3 w-px" />
+            <span aria-hidden="true" className="h-3 w-px bg-border" />
             <span className="text-muted-foreground">{study.year}</span>
           </div>
 
-          <h1 className="font-display mt-5 max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.98] font-semibold">
+          <h1 className="mt-5 max-w-4xl font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.98] font-semibold">
             {study.title}
           </h1>
 
-          <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed">
+          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             {study.summary}
           </p>
         </Container>
       </header>
 
       <Container className="py-14 lg:py-16">
-        <div className="border-border overflow-hidden rounded-sm border">
-          <CampaignPlate plate={study.plate} className="aspect-[21/9]" />
-        </div>
+        {/* Photography replaces the generated banner outright rather than
+            sitting under it: a stand-in plate above real campaign photos is the
+            page announcing it had no pictures, directly above the pictures.
+
+            The grid stays two-up instead of leading on a full-width hero. The
+            recovered files are ~410px wide, so spanning the container would
+            upscale them four-fold — the one thing this imagery cannot survive. */}
+        {gallery.length > 0 ? (
+          <Reveal>
+            <section>
+              <h2 className="eyebrow text-muted-foreground">On site</h2>
+              {/* Two up, capped: at ~410px source these are sharp in a half
+                  column and soft in a full one. */}
+              <ul className="mt-6 grid gap-5 sm:grid-cols-2">
+                {gallery.map((shot) => (
+                  <li
+                    key={shot.src}
+                    className="relative aspect-[3/2] overflow-hidden rounded-sm border border-border"
+                  >
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={shot.width}
+                      height={shot.height}
+                      sizes="(min-width: 640px) 420px, 100vw"
+                      className="h-full w-full object-cover"
+                    />
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Campaign photography recovered from the company profile archive.
+              </p>
+            </section>
+          </Reveal>
+        ) : (
+          /* Nothing was shot for this project, so the plate is doing real work
+             as art direction rather than standing in for something better. */
+          <div className="overflow-hidden rounded-sm border border-border">
+            <CampaignPlate plate={study.plate} className="aspect-[21/9]" />
+          </div>
+        )}
 
         {/* Results promoted above the narrative: a buyer scanning this page is
             looking for the number before they commit to reading the story.
@@ -94,10 +141,12 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             band's own rules would otherwise frame an empty strip. */}
         {study.results.length > 0 ? (
           <Reveal>
-            <dl className="border-border mt-14 grid gap-10 border-y py-10 sm:grid-cols-3">
+            <dl className="mt-14 grid gap-10 border-y border-border py-10 sm:grid-cols-3">
               {study.results.map((result) => (
                 <div key={result.label} className="flex flex-col-reverse gap-2">
-                  <dt className="text-muted-foreground text-sm">{result.label}</dt>
+                  <dt className="text-sm text-muted-foreground">
+                    {result.label}
+                  </dt>
                   <dd className="font-display text-[clamp(2.5rem,5vw,3.75rem)] leading-none font-semibold">
                     {result.value}
                   </dd>
@@ -114,12 +163,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             <Section title="The outcome" body={study.narrative.outcome} />
 
             {study.quote ? (
-              <figure className="border-primary mt-2 border-l-2 pl-6">
+              <figure className="mt-2 border-l-2 border-primary pl-6">
                 <blockquote className="font-display text-xl leading-snug font-medium text-balance sm:text-2xl">
                   <p>&ldquo;{study.quote.text}&rdquo;</p>
                 </blockquote>
-                <figcaption className="text-muted-foreground mt-4 text-sm">
-                  <span className="text-foreground font-semibold">{study.quote.name}</span>
+                <figcaption className="mt-4 text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">
+                    {study.quote.name}
+                  </span>
                   {", "}
                   {/* `org` carries the endorsing body where that is not the
                       commissioning client — a ministry or a secretariat. */}
@@ -138,14 +189,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       </Container>
 
       {next ? (
-        <section className="border-border bg-muted/40 border-t">
+        <section className="border-t border-border bg-muted/40">
           <Container className="py-16 lg:py-20">
             <span className="eyebrow text-accent-strong">Next project</span>
             <div className="mt-6 flex flex-wrap items-end justify-between gap-8">
-              <h2 className="font-display max-w-2xl text-[clamp(1.75rem,4vw,3rem)] leading-[1.02] font-semibold">
+              <h2 className="max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.02] font-semibold">
                 <Link
                   href={`/work/${next.slug}`}
-                  className="focus-visible:ring-ring rounded-sm focus-visible:ring-2 focus-visible:outline-none"
+                  className="rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   {next.title}
                 </Link>
@@ -170,18 +221,20 @@ function Section({ title, body }: { title: string; body: string }) {
       <h2 className="font-display text-2xl leading-tight font-semibold sm:text-3xl">
         {title}
       </h2>
-      <p className="text-muted-foreground max-w-prose text-base leading-relaxed">{body}</p>
+      <p className="max-w-prose text-base leading-relaxed text-muted-foreground">
+        {body}
+      </p>
     </section>
   )
 }
 
 function Meta({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="border-border flex flex-col gap-3 border-t pt-5">
+    <div className="flex flex-col gap-3 border-t border-border pt-5">
       <h2 className="eyebrow text-muted-foreground">{title}</h2>
       <ul className="flex flex-col gap-2">
         {items.map((item) => (
-          <li key={item} className="text-foreground/85 text-sm leading-relaxed">
+          <li key={item} className="text-sm leading-relaxed text-foreground/85">
             {item}
           </li>
         ))}

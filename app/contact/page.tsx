@@ -36,37 +36,43 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={120} as="aside" className="flex flex-col gap-10">
-              <div className="border-border flex flex-col gap-3 border-t pt-5">
+              <div className="flex flex-col gap-3 border-t border-border pt-5">
                 <h2 className="eyebrow text-muted-foreground">Direct</h2>
                 <a
                   href={`mailto:${site.contact.email}`}
-                  className="link-rule text-foreground hover:text-accent-strong w-fit text-sm transition-colors"
+                  className="w-fit link-rule text-sm text-foreground transition-colors hover:text-accent-strong"
                 >
                   {site.contact.email}
                 </a>
                 <a
                   href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                  className="link-rule text-foreground hover:text-accent-strong w-fit text-sm transition-colors"
+                  className="w-fit link-rule text-sm text-foreground transition-colors hover:text-accent-strong"
                 >
                   {site.contact.phone}
                 </a>
-                <p className="text-muted-foreground text-sm">{site.contact.address}</p>
+                <p className="text-sm text-muted-foreground">
+                  {site.contact.address}
+                </p>
               </div>
 
-              <div className="border-border flex flex-col gap-3 border-t pt-5">
-                <h2 className="eyebrow text-muted-foreground">What happens next</h2>
-                <ol className="text-muted-foreground flex flex-col gap-3 text-sm leading-relaxed">
+              <div className="flex flex-col gap-3 border-t border-border pt-5">
+                <h2 className="eyebrow text-muted-foreground">
+                  What happens next
+                </h2>
+                <ol className="flex flex-col gap-3 text-sm leading-relaxed text-muted-foreground">
                   <li>
-                    <span className="text-foreground font-medium">1.</span> We read the
-                    brief and come back within two working days.
+                    <span className="font-medium text-foreground">1.</span> We
+                    read the brief and come back within two working days.
                   </li>
                   <li>
-                    <span className="text-foreground font-medium">2.</span> A short call
-                    to pressure-test the problem — not a credentials deck.
+                    <span className="font-medium text-foreground">2.</span> A
+                    short call to pressure-test the problem, not a credentials
+                    deck.
                   </li>
                   <li>
-                    <span className="text-foreground font-medium">3.</span> A scoped
-                    proposal, or an honest referral elsewhere if we&rsquo;re the wrong fit.
+                    <span className="font-medium text-foreground">3.</span> A
+                    scoped proposal, or an honest referral elsewhere if
+                    we&rsquo;re the wrong fit.
                   </li>
                 </ol>
               </div>

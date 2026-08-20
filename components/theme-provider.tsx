@@ -47,11 +47,15 @@ function ThemeHotkey() {
         return
       }
 
-      if (event.key.toLowerCase() !== "d") {
+      if (isTypingTarget(event.target)) {
         return
       }
 
-      if (isTypingTarget(event.target)) {
+      /* Chrome fires a keydown with no `key` when it autofills a field, and
+         composition keydowns arrive as `key: undefined` mid-IME. Neither is a
+         real keypress, so read the property defensively rather than assuming
+         the KeyboardEvent type holds at runtime. */
+      if (typeof event.key !== "string" || event.key.toLowerCase() !== "d") {
         return
       }
 

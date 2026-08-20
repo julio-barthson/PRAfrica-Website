@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
@@ -32,14 +33,37 @@ export function WorkCard({
         className
       )}
     >
+      {/* Photo when one exists, generated plate otherwise. The two share an
+          aspect ratio so a mixed grid still lines up row to row. */}
       <div className="border-border overflow-hidden rounded-sm border">
-        <CampaignPlate
-          plate={study.plate}
-          className={cn(
-            "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]",
-            isSplit ? "aspect-[4/3]" : "aspect-[3/2]"
-          )}
-        />
+        {study.image ? (
+          <div
+            className={cn(
+              "relative overflow-hidden",
+              isSplit ? "aspect-[4/3]" : "aspect-[3/2]"
+            )}
+          >
+            <Image
+              src={study.image.src}
+              alt={study.image.alt}
+              width={study.image.width}
+              height={study.image.height}
+              /* Source files are ~410px wide, so asking the optimiser for a
+                 larger candidate would only upscale. Capping `sizes` keeps it
+                 from serving a blurry 2x that costs bytes and buys nothing. */
+              sizes="(min-width: 1024px) 410px, 100vw"
+              className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+            />
+          </div>
+        ) : (
+          <CampaignPlate
+            plate={study.plate}
+            className={cn(
+              "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]",
+              isSplit ? "aspect-[4/3]" : "aspect-[3/2]"
+            )}
+          />
+        )}
       </div>
 
       <div className="flex flex-col gap-4">
