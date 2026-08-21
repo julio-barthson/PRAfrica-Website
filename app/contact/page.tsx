@@ -44,15 +44,25 @@ export default function ContactPage() {
                 >
                   {site.contact.email}
                 </a>
+                <div className="flex flex-col gap-2">
+                  {site.contact.phone.map((phone, i) => (
+                    <a
+                      key={i}
+                      href={`tel:${phone.replace(/\s/g, "")}`}
+                      className="w-fit link-rule text-sm text-foreground transition-colors hover:text-accent-strong"
+                    >
+                      {phone}
+                    </a>
+                  ))}
+                </div>
                 <a
-                  href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                  className="w-fit link-rule text-sm text-foreground transition-colors hover:text-accent-strong"
+                  href={`https://maps.google.com/?q=${site.contact.address}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent-strong"
                 >
-                  {site.contact.phone}
-                </a>
-                <p className="text-sm text-muted-foreground">
                   {site.contact.address}
-                </p>
+                </a>
               </div>
 
               <div className="flex flex-col gap-3 border-t border-border pt-5">

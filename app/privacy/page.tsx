@@ -49,10 +49,17 @@ export default function PrivacyPage() {
             data controller for personal data submitted through it. You can
             reach us at{" "}
             <A href={`mailto:${site.contact.email}`}>{site.contact.email}</A> or{" "}
-            <A href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>
-              {site.contact.phone}
-            </A>
-            .
+            <span className="inline-flex gap-2">
+              {site.contact.phone.map((phone, i) => (
+                <a
+                  key={i}
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent-strong"
+                >
+                  {phone}
+                </a>
+              ))}
+            </span>
           </P>
         </Section>
 

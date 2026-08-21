@@ -23,16 +23,19 @@ export const team: TeamMember[] = [
        signed the 2017 Fidelity outdoor media mandate as MD/CEO. */
     bio: "Named by the Federal Ministry of Information and Communications as leading the team behind the Nigeria @ 50 placement at Heathrow Express.",
     plate: { motif: "eclipse", tone: "clay" },
+    image: "/assets/prince-dapo.jpeg",
   },
   {
     name: "Toba Benjamin Adelegan",
     role: "Executive Director",
     plate: { motif: "column", tone: "ochre" },
+    image: "/assets/toba-benjamin.jpg",
   },
   {
     name: "Fajobi Comfort Oreoluwa",
     role: "Head, Client Services",
     plate: { motif: "arc", tone: "deep" },
+    image: "/assets/fajobi-comfort.jpeg",
   },
 ]
 

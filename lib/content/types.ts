@@ -111,6 +111,7 @@ export interface TeamMember {
    */
   bio?: string
   plate: Plate
+  image: string
 }
 
 export interface Insight {

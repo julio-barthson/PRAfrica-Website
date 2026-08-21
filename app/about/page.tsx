@@ -6,6 +6,7 @@ import { Container } from "@/components/site/container"
 import { PageHeader } from "@/components/site/page-header"
 import { Reveal } from "@/components/site/reveal"
 import { markets, partners, stats, team } from "@/lib/content"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "About",
@@ -100,14 +101,13 @@ export default function AboutPage() {
                 as="li"
                 className="flex flex-col gap-4"
               >
-                {/* Replace with real photography first — this is the page where
-                    generated artwork is weakest, because people buy people. */}
-                <div className="overflow-hidden rounded-sm border border-border">
-                  <CampaignPlate
-                    plate={member.plate}
-                    className="aspect-[4/5]"
-                  />
-                </div>
+                <Image
+                  src={member.image}
+                  alt={`${member.name} photo`}
+                  width={1000}
+                  height={1000}
+                  className="aspect-[3/4] object-cover"
+                />
                 <div className="flex flex-col gap-1.5">
                   <h3 className="font-display text-lg leading-tight font-semibold">
                     {member.name}

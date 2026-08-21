@@ -33,9 +33,9 @@ export const site = {
    * two — Jibowu, Yaba (2004) and Omole Phase 1 (2013) — are historic.
    */
   contact: {
-    email: "info@prafricalimited.com",
-    phone: "+234 806 483 9141",
-    address: "Plot 14, Road 1, Ikota Villa Estate, Ajah, Lagos",
+    email: "c.fajobiprafricalimited.com",
+    phone: ["+234 803 273 4830", "+234 703 700 0007"],
+    address: "17a Aroyewun Crescent off Ramat Road Ogudu GRA Lagos",
   },
 
   nav: [
