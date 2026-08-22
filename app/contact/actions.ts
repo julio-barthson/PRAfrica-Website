@@ -87,8 +87,6 @@ export async function submitBrief(
   const sent = await sendBriefNotification(values)
 
   if (!sent.ok) {
-    // Never report success for a message that was not delivered — the whole
-    // point of this form is that an enquiry reaches someone.
     return {
       status: "error",
       message: `Something went wrong sending your brief. Please email us directly at ${site.contact.email} and we'll pick it up straight away.`,
