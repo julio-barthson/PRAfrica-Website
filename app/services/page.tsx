@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
 import { ContactCta } from "@/components/home/contact-cta"
 import { Container } from "@/components/site/container"
@@ -92,6 +92,15 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
+                    {capability.href ? (
+                      <Link
+                        href={capability.href}
+                        className="link-rule text-accent-strong hover:text-foreground focus-visible:ring-ring mt-3 inline-flex w-fit items-center gap-1.5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                      >
+                        {capability.hrefLabel ?? "Read more"}
+                        <ArrowUpRight aria-hidden="true" className="size-4" />
+                      </Link>
+                    ) : null}
                   </Reveal>
                 ))}
             </div>

@@ -210,6 +210,59 @@ export interface Programme {
   attribution?: string
 }
 
+/**
+ * An out-of-home format the company sells and installs.
+ *
+ * Format, not client, is the organising principle here: a buyer arrives knowing
+ * they want reach on a corridor, and picks the structure that delivers it. The
+ * work pages already index by client and sector, so this is the other axis.
+ */
+export interface OohFormat {
+  slug: string
+  name: string
+  /** One line, shown under the name — what the structure physically is. */
+  definition: string
+  /** The write-up: where it works and what it is good for. Two or three sentences. */
+  description: string
+  /** What this format is strongest at. Keep to three — this is a scan, not a spec. */
+  strengths: string[]
+  /**
+   * Installed sites. May be empty: some formats are sold from the rate card
+   * before there is usable photography of them, and a stated capability with
+   * no picture is honest where a borrowed picture is not. Consumers must
+   * handle [] and render the format as a text card.
+   */
+  placements: OohPlacement[]
+}
+
+export interface OohPlacement {
+  /** Path under /public. */
+  src: string
+  alt: string
+  /** Intrinsic pixel size of the file — never the display size. */
+  width: number
+  height: number
+  /** The advertiser whose creative is on the structure. */
+  client: string
+  /** Where it stands, as specifically as the record supports. */
+  location: string
+  /**
+   * Capture date from the photograph's own GPS stamp, where it carries one.
+   * Shown in the caption: these are monitoring photographs and the date is the
+   * point of them, not metadata to hide.
+   */
+  captured?: string
+  /**
+   * True where the creative is composited onto the structure rather than
+   * photographed installed — inventory shown with indicative artwork. Rendered
+   * as an explicit label, because a mockup presented as a delivered campaign is
+   * a misrepresentation of the work.
+   */
+  indicative?: boolean
+  /** Held back from the home page strip; still shown on the format page. */
+  secondary?: boolean
+}
+
 export interface Insight {
   slug: string
   title: string
@@ -228,6 +281,14 @@ export interface Capability {
   division: Division
   /** Concrete deliverables — what the client actually receives. */
   offerings: string[]
+  /**
+   * Optional deeper page for capabilities that have one. Only set where real
+   * content exists behind it — a "learn more" that leads nowhere is worse than
+   * no link at all.
+   */
+  href?: string
+  /** Link text, shown only when `href` is set. */
+  hrefLabel?: string
 }
 
 export interface Testimonial {

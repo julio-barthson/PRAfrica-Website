@@ -33,6 +33,8 @@ export const capabilities: Capability[] = [
       "Production and installation",
       "Monitoring and verification",
     ],
+    href: "/formats",
+    hrefLabel: "See every format",
   },
   {
     title: "Sponsorship Drive & Marketing",
