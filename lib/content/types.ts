@@ -112,6 +112,102 @@ export interface TeamMember {
   bio?: string
   plate: Plate
   image: string
+  /**
+   * Set only where we hold a real, sourced long-form profile. Drives the
+   * /about/[slug] route and decides which team cards become links — members
+   * without one render as plain cards rather than linking to an empty page.
+   */
+  profileSlug?: string
+}
+
+/**
+ * Long-form biography for a named individual.
+ *
+ * Split into typed sections rather than a single prose blob so the page can lay
+ * out a timeline and credential lists properly, and so every claim stays
+ * traceable to a line in the source document. Nothing here is inferred: if the
+ * profile does not state it, the field is absent.
+ */
+export interface LeaderProfile {
+  slug: string
+  name: string
+  /** Matches the `role` on the corresponding TeamMember. */
+  role: string
+  /** One sentence, used as the page lead and the meta description. */
+  headline: string
+  /**
+   * Two or three credentials for the home page, chosen editorially rather than
+   * derived from the lists below — "most recent" and "most worth leading with"
+   * are rarely the same entry, and a homepage that picks for itself gets it
+   * wrong the first time the data changes.
+   */
+  highlights?: string[]
+  /** Body copy, one entry per paragraph. */
+  biography: string[]
+  education: {
+    qualification: string
+    institution: string
+    /** Absent where the source gives no year — rendered as a plain row. */
+    year?: number
+  }[]
+  /**
+   * Dated career events, newest last. `year` is a string so open-ended spans
+   * ("1999–2006") sit in the same list as single years.
+   */
+  milestones: { year: string; title: string; detail?: string }[]
+  /**
+   * Board seats and offices held. `current` drives the "Present" grouping —
+   * a past presidency shown as a standing one is a false claim, so anything
+   * unconfirmed belongs in `unverified` instead.
+   */
+  appointments: { role: string; org: string; current: boolean }[]
+  honours: { title: string; awarder?: string; year?: number }[]
+  /**
+   * Claims from the source document that cannot be published as-is — undated
+   * offices, unattributed rankings, self-ageing counts. Never rendered. Kept
+   * here so the gap is visible in review instead of quietly dropped.
+   */
+  unverified?: string[]
+}
+
+/**
+ * A recurring programme or lecture series hosted by the firm or its principals.
+ *
+ * Modelled as a standing curriculum, not an event: the source flyer was for one
+ * sitting on a fixed date, but the profile describes an ongoing series. Dates,
+ * fees and payment details are deliberately absent from this shape — they are
+ * perishable, and the account details on the flyer must not reach a public page.
+ */
+export interface Programme {
+  slug: string
+  name: string
+  /** The programme's own brand line. */
+  strapline: string
+  summary: string
+  /** Name of the person who leads it. */
+  host: string
+  /** Link to the host's profile page, where one exists. */
+  hostProfileSlug?: string
+  modules: { title: string; topics: string[] }[]
+  /** How a session runs — the non-lecture components. */
+  format: string[]
+  venue?: string
+  /**
+   * The programme's own promotional artwork, shown as a designed artefact
+   * beside the typeset curriculum rather than in place of it.
+   *
+   * ⚠️ Whatever is put here is served publicly at its path under /public. The
+   * source flyer carried a bank account and two personal mobile numbers, so the
+   * file referenced here is a crop taken above that block — see programmes.ts.
+   * Never point this at an uncropped promotional file without reading it first.
+   */
+  image?: CampaignImage
+  /**
+   * Attribution for the intellectual framework the curriculum draws on.
+   * Rendered on the page. Publishing another author's named concepts as an
+   * unattributed syllabus is passing off, so this is not optional in practice.
+   */
+  attribution?: string
 }
 
 export interface Insight {

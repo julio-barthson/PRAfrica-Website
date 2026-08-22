@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 
 import { ContactCta } from "@/components/home/contact-cta"
-import { CampaignPlate } from "@/components/site/campaign-plate"
 import { Container } from "@/components/site/container"
 import { PageHeader } from "@/components/site/page-header"
 import { Reveal } from "@/components/site/reveal"
 import { markets, partners, stats, team } from "@/lib/content"
+import { cn } from "@/lib/utils"
 import Image from "next/image"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "About",
@@ -99,18 +100,36 @@ export default function AboutPage() {
                 key={member.name}
                 delay={i * 90}
                 as="li"
-                className="flex flex-col gap-4"
+                className="group relative flex flex-col gap-4"
               >
-                <Image
-                  src={member.image}
-                  alt={`${member.name} photo`}
-                  width={1000}
-                  height={1000}
-                  className="aspect-[3/4] object-cover"
-                />
+                <div className="overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={`${member.name} photo`}
+                    width={1000}
+                    height={1000}
+                    className={cn(
+                      "aspect-3/4 object-cover",
+                      member.profileSlug &&
+                        "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    )}
+                  />
+                </div>
                 <div className="flex flex-col gap-1.5">
                   <h3 className="font-display text-lg leading-tight font-semibold">
-                    {member.name}
+                    {/* Only members with a sourced profile link anywhere. The
+                        stretched pseudo-element makes the whole card the target
+                        while keeping the link's accessible name to the person. */}
+                    {member.profileSlug ? (
+                      <Link
+                        href={`/about/${member.profileSlug}`}
+                        className="focus-visible:ring-ring rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:ring-2 focus-visible:outline-none"
+                      >
+                        {member.name}
+                      </Link>
+                    ) : (
+                      member.name
+                    )}
                   </h3>
                   <p className="text-xs font-semibold tracking-wide text-accent-strong uppercase">
                     {member.role}
@@ -119,6 +138,11 @@ export default function AboutPage() {
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                       {member.bio}
                     </p>
+                  ) : null}
+                  {member.profileSlug ? (
+                    <span className="link-rule mt-2 w-fit text-sm text-accent-strong">
+                      Read full profile
+                    </span>
                   ) : null}
                 </div>
               </Reveal>

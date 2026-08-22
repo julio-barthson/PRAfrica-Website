@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-import { caseStudies, insights, site } from "@/lib/content"
+import { caseStudies, insights, leaderProfiles, site } from "@/lib/content"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/about",
     "/insights",
+    "/masterclass",
     "/contact",
     "/privacy",
   ].map((path) => ({
@@ -32,5 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...workRoutes, ...insightRoutes]
+  const leaderRoutes = leaderProfiles.map((profile) => ({
+    url: `${site.url}/about/${profile.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.6,
+  }))
+
+  return [...staticRoutes, ...workRoutes, ...insightRoutes, ...leaderRoutes]
 }

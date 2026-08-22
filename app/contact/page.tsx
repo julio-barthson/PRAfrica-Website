@@ -13,7 +13,13 @@ export const metadata: Metadata = {
     "Send PRAfrica a brief. We reply to every enquiry within two working days with an honest read on whether we're the right team for it.",
 }
 
-export default function ContactPage() {
+export default async function ContactPage(props: PageProps<"/contact">) {
+  /* Only ever used to preselect a dropdown option that already exists in the
+     form's own list — an unrecognised value simply leaves it unselected, so
+     there is nothing here for a crafted URL to inject. */
+  const { service } = await props.searchParams
+  const defaultService = typeof service === "string" ? service : undefined
+
   return (
     <>
       <PageHeader
@@ -32,7 +38,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-20">
             <Reveal>
-              <ContactForm />
+              <ContactForm defaultService={defaultService} />
             </Reveal>
 
             <Reveal delay={120} as="aside" className="flex flex-col gap-10">

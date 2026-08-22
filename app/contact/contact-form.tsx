@@ -11,6 +11,14 @@ import { cn } from "@/lib/utils"
 import { submitBrief } from "./actions"
 import { initialContactState } from "./contact-state"
 
+/**
+ * `MASTERCLASS_SERVICE` is linked to by name from /masterclass, so the two must
+ * agree — the value arrives back as `?service=` and is matched against this
+ * list. The server only checks that `service` is non-empty, so a drift here
+ * fails silently as an unselected dropdown rather than an error.
+ */
+export const MASTERCLASS_SERVICE = "Masterclass enquiry"
+
 const SERVICES = [
   "Brand & campaign strategy",
   "Media planning & buying",
@@ -18,6 +26,7 @@ const SERVICES = [
   "Event production",
   "Talent & culture partnerships",
   "Content production",
+  MASTERCLASS_SERVICE,
   "Not sure yet",
 ]
 
@@ -31,7 +40,18 @@ const BUDGETS = [
 
 const TIMELINES = ["Within a month", "1–3 months", "3–6 months", "Just exploring"]
 
-export function ContactForm() {
+export function ContactForm({
+  /**
+   * Preselects the service dropdown, so a visitor arriving from a specific page
+   * (currently /masterclass) does not have to restate why they are here. Read
+   * from the query string by the page and passed down, rather than via
+   * useSearchParams, which would force this subtree into a Suspense boundary
+   * for one initial value.
+   */
+  defaultService,
+}: {
+  defaultService?: string
+} = {}) {
   const [state, formAction, pending] = useActionState(submitBrief, initialContactState)
 
   /**
@@ -47,7 +67,9 @@ export function ContactForm() {
    * keeps the no-JS path working too: there the form re-renders fresh from the
    * server and these become the initial values.
    */
-  const [fields, setFields] = React.useState<Record<string, string>>({})
+  const [fields, setFields] = React.useState<Record<string, string>>(
+    defaultService ? { service: defaultService } : {}
+  )
   const [seenValues, setSeenValues] = React.useState(state.values)
 
   /**

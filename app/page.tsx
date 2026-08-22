@@ -3,6 +3,7 @@ import { ClientWall } from "@/components/home/client-wall"
 import { ContactCta } from "@/components/home/contact-cta"
 import { FeaturedWork } from "@/components/home/featured-work"
 import { Hero } from "@/components/home/hero"
+import { LeadershipSection } from "@/components/home/leadership-section"
 import { TestimonialSection } from "@/components/home/testimonial-section"
 
 export default function HomePage() {
@@ -16,6 +17,10 @@ export default function HomePage() {
           seeing any proof of it. */}
       <FeaturedWork />
       <CapabilitiesSection />
+      {/* Placed after the capability pitch and before the endorsement, so the
+          page runs proof → what we do → who runs it → what a client said. The
+          testimonial and the contact CTA close as a pair and are not split. */}
+      <LeadershipSection />
       <TestimonialSection />
       <ContactCta />
     </>

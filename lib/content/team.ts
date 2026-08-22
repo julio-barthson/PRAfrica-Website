@@ -24,6 +24,9 @@ export const team: TeamMember[] = [
     bio: "Named by the Federal Ministry of Information and Communications as leading the team behind the Nigeria @ 50 placement at Heathrow Express.",
     plate: { motif: "eclipse", tone: "clay" },
     image: "/assets/prince-dapo.jpeg",
+    /* The only member with a sourced long-form profile — see leadership.ts.
+       The other two link nowhere until the client supplies real bios. */
+    profileSlug: "dapo-adelegan",
   },
   {
     name: "Toba Benjamin Adelegan",
